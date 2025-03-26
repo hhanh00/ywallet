@@ -5,6 +5,7 @@ use r2d2::Pool;
 use r2d2_sqlite::SqliteConnectionManager;
 
 pub mod simple;
+pub mod warp;
 
 #[derive(Clone)]
 #[frb(ignore)]

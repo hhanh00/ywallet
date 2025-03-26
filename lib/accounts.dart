@@ -7,6 +7,7 @@ import 'coin/coins.dart';
 import 'package:mobx/mobx.dart';
 
 import 'src/rust/api/simple.dart';
+import 'src/rust/api/warp.dart';
 import 'src/rust/types.dart';
 import 'types.dart';
 import 'utils.dart';
@@ -48,7 +49,7 @@ class ActiveAccount2 extends _ActiveAccount2 with _$ActiveAccount2 {
     var id = prefs.getInt('account') ?? 0;
     // if (WarpApi.checkAccount(coin, id)) return ActiveAccount2.fromId(coin, id); TODO
     for (var c in coins) {
-      final id = 1; // WarpApi.getFirstAccount(c.coin); TODO
+      final id = getFirstAccount(coin: c.coin);
       if (id > 0) return ActiveAccount2.fromId(c.coin, id);
     }
     return null;
