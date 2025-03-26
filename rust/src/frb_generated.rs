@@ -37,7 +37,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.9.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1968354222;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 716845890;
 
 // Section: executor
 
@@ -128,6 +128,82 @@ fn wire__crate__api__simple__download_impl(
                     .await,
                 )
             }
+        },
+    )
+}
+fn wire__crate__api__simple__dummy_impl(
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "dummy",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api__a1 = <crate::types::PoolBalance>::sse_decode(&mut deserializer);
+            let api__a2 = <crate::types::Spending>::sse_decode(&mut deserializer);
+            let api__a3 = <crate::types::TxTimeValue>::sse_decode(&mut deserializer);
+            let api__a4 = <crate::types::Quote>::sse_decode(&mut deserializer);
+            let api__a5 = <crate::types::Fee>::sse_decode(&mut deserializer);
+            let api__a6 = <crate::types::Progress>::sse_decode(&mut deserializer);
+            let api__a7 = <crate::types::Contact>::sse_decode(&mut deserializer);
+            let api__a8 = <crate::types::TxMemo>::sse_decode(&mut deserializer);
+            let api__a9 = <crate::types::ShieldedNote>::sse_decode(&mut deserializer);
+            deserializer.end();
+            transform_result_sse::<_, ()>((move || {
+                let output_ok = Result::<_, ()>::Ok({
+                    crate::api::simple::dummy(
+                        &api__a1, &api__a2, &api__a3, &api__a4, &api__a5, &api__a6, &api__a7,
+                        &api__a8, &api__a9,
+                    );
+                })?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__simple__getBackup_impl(
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "getBackup",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_coin = <u8>::sse_decode(&mut deserializer);
+            let api_id = <u32>::sse_decode(&mut deserializer);
+            deserializer.end();
+            transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                (move || {
+                    let output_ok = crate::api::simple::getBackup(api_coin, api_id)?;
+                    Ok(output_ok)
+                })(),
+            )
         },
     )
 }
@@ -372,6 +448,30 @@ impl SseDecode for String {
     }
 }
 
+impl SseDecode for crate::types::Backup {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_name = <String>::sse_decode(deserializer);
+        let mut var_seed = <Option<String>>::sse_decode(deserializer);
+        let mut var_index = <u32>::sse_decode(deserializer);
+        let mut var_sk = <Option<String>>::sse_decode(deserializer);
+        let mut var_fvk = <String>::sse_decode(deserializer);
+        let mut var_uvk = <String>::sse_decode(deserializer);
+        let mut var_tsk = <Option<String>>::sse_decode(deserializer);
+        let mut var_saved = <bool>::sse_decode(deserializer);
+        return crate::types::Backup {
+            name: var_name,
+            seed: var_seed,
+            index: var_index,
+            sk: var_sk,
+            fvk: var_fvk,
+            uvk: var_uvk,
+            tsk: var_tsk,
+            saved: var_saved,
+        };
+    }
+}
+
 impl SseDecode for bool {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -386,6 +486,20 @@ impl SseDecode for crate::api::simple::Choice {
         let mut var_address = <String>::sse_decode(deserializer);
         return crate::api::simple::Choice {
             choice: var_choice,
+            address: var_address,
+        };
+    }
+}
+
+impl SseDecode for crate::types::Contact {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <u32>::sse_decode(deserializer);
+        let mut var_name = <String>::sse_decode(deserializer);
+        let mut var_address = <String>::sse_decode(deserializer);
+        return crate::types::Contact {
+            id: var_id,
+            name: var_name,
             address: var_address,
         };
     }
@@ -414,6 +528,32 @@ impl SseDecode for crate::api::simple::Election {
             address: var_address,
             downloaded: var_downloaded,
         };
+    }
+}
+
+impl SseDecode for f64 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_f64::<NativeEndian>().unwrap()
+    }
+}
+
+impl SseDecode for crate::types::Fee {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_scheme = <u8>::sse_decode(deserializer);
+        let mut var_fee = <u64>::sse_decode(deserializer);
+        return crate::types::Fee {
+            scheme: var_scheme,
+            fee: var_fee,
+        };
+    }
+}
+
+impl SseDecode for i64 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_i64::<NativeEndian>().unwrap()
     }
 }
 
@@ -453,6 +593,17 @@ impl SseDecode for Vec<crate::api::simple::Vote> {
     }
 }
 
+impl SseDecode for Option<String> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(<String>::sse_decode(deserializer));
+        } else {
+            return None;
+        }
+    }
+}
+
 impl SseDecode for Option<u32> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -461,6 +612,108 @@ impl SseDecode for Option<u32> {
         } else {
             return None;
         }
+    }
+}
+
+impl SseDecode for crate::types::PoolBalance {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_transparent = <u64>::sse_decode(deserializer);
+        let mut var_sapling = <u64>::sse_decode(deserializer);
+        let mut var_orchard = <u64>::sse_decode(deserializer);
+        return crate::types::PoolBalance {
+            transparent: var_transparent,
+            sapling: var_sapling,
+            orchard: var_orchard,
+        };
+    }
+}
+
+impl SseDecode for crate::types::Progress {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_timestamp = <u32>::sse_decode(deserializer);
+        let mut var_trialDecryptions = <u32>::sse_decode(deserializer);
+        let mut var_height = <u32>::sse_decode(deserializer);
+        let mut var_downloaded = <u32>::sse_decode(deserializer);
+        return crate::types::Progress {
+            timestamp: var_timestamp,
+            trial_decryptions: var_trialDecryptions,
+            height: var_height,
+            downloaded: var_downloaded,
+        };
+    }
+}
+
+impl SseDecode for crate::types::Quote {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_timestamp = <u32>::sse_decode(deserializer);
+        let mut var_price = <f64>::sse_decode(deserializer);
+        return crate::types::Quote {
+            timestamp: var_timestamp,
+            price: var_price,
+        };
+    }
+}
+
+impl SseDecode for crate::types::ShieldedNote {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <u32>::sse_decode(deserializer);
+        let mut var_height = <u32>::sse_decode(deserializer);
+        let mut var_value = <u64>::sse_decode(deserializer);
+        let mut var_timestamp = <u32>::sse_decode(deserializer);
+        let mut var_orchard = <bool>::sse_decode(deserializer);
+        let mut var_excluded = <bool>::sse_decode(deserializer);
+        let mut var_spent = <bool>::sse_decode(deserializer);
+        return crate::types::ShieldedNote {
+            id: var_id,
+            height: var_height,
+            value: var_value,
+            timestamp: var_timestamp,
+            orchard: var_orchard,
+            excluded: var_excluded,
+            spent: var_spent,
+        };
+    }
+}
+
+impl SseDecode for crate::types::Spending {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_recipient = <String>::sse_decode(deserializer);
+        let mut var_amount = <i64>::sse_decode(deserializer);
+        return crate::types::Spending {
+            recipient: var_recipient,
+            amount: var_amount,
+        };
+    }
+}
+
+impl SseDecode for crate::types::TxMemo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_direction = <u8>::sse_decode(deserializer);
+        let mut var_address = <String>::sse_decode(deserializer);
+        let mut var_memo = <String>::sse_decode(deserializer);
+        return crate::types::TxMemo {
+            direction: var_direction,
+            address: var_address,
+            memo: var_memo,
+        };
+    }
+}
+
+impl SseDecode for crate::types::TxTimeValue {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_timestamp = <u32>::sse_decode(deserializer);
+        let mut var_value = <i64>::sse_decode(deserializer);
+        return crate::types::TxTimeValue {
+            timestamp: var_timestamp,
+            value: var_value,
+        };
     }
 }
 
@@ -524,12 +777,12 @@ fn pde_ffi_dispatcher_primary_impl(
     match func_id {
         1 => wire__crate__api__simple__create_election_impl(port, ptr, rust_vec_len, data_len),
         2 => wire__crate__api__simple__download_impl(port, ptr, rust_vec_len, data_len),
-        3 => wire__crate__api__simple__get_balance_impl(port, ptr, rust_vec_len, data_len),
-        4 => wire__crate__api__simple__get_election_impl(port, ptr, rust_vec_len, data_len),
-        5 => wire__crate__api__simple__init_app_impl(port, ptr, rust_vec_len, data_len),
-        6 => wire__crate__api__simple__list_votes_impl(port, ptr, rust_vec_len, data_len),
-        7 => wire__crate__api__simple__synchronize_impl(port, ptr, rust_vec_len, data_len),
-        8 => wire__crate__api__simple__vote_impl(port, ptr, rust_vec_len, data_len),
+        5 => wire__crate__api__simple__get_balance_impl(port, ptr, rust_vec_len, data_len),
+        6 => wire__crate__api__simple__get_election_impl(port, ptr, rust_vec_len, data_len),
+        7 => wire__crate__api__simple__init_app_impl(port, ptr, rust_vec_len, data_len),
+        8 => wire__crate__api__simple__list_votes_impl(port, ptr, rust_vec_len, data_len),
+        9 => wire__crate__api__simple__synchronize_impl(port, ptr, rust_vec_len, data_len),
+        10 => wire__crate__api__simple__vote_impl(port, ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }
@@ -542,12 +795,36 @@ fn pde_ffi_dispatcher_sync_impl(
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
     match func_id {
+        3 => wire__crate__api__simple__dummy_impl(ptr, rust_vec_len, data_len),
+        4 => wire__crate__api__simple__getBackup_impl(ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }
 
 // Section: rust2dart
 
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::types::Backup {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.name.into_into_dart().into_dart(),
+            self.seed.into_into_dart().into_dart(),
+            self.index.into_into_dart().into_dart(),
+            self.sk.into_into_dart().into_dart(),
+            self.fvk.into_into_dart().into_dart(),
+            self.uvk.into_into_dart().into_dart(),
+            self.tsk.into_into_dart().into_dart(),
+            self.saved.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::types::Backup {}
+impl flutter_rust_bridge::IntoIntoDart<crate::types::Backup> for crate::types::Backup {
+    fn into_into_dart(self) -> crate::types::Backup {
+        self
+    }
+}
 // Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for crate::api::simple::Choice {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
@@ -561,6 +838,23 @@ impl flutter_rust_bridge::IntoDart for crate::api::simple::Choice {
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::api::simple::Choice {}
 impl flutter_rust_bridge::IntoIntoDart<crate::api::simple::Choice> for crate::api::simple::Choice {
     fn into_into_dart(self) -> crate::api::simple::Choice {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::types::Contact {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.name.into_into_dart().into_dart(),
+            self.address.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::types::Contact {}
+impl flutter_rust_bridge::IntoIntoDart<crate::types::Contact> for crate::types::Contact {
+    fn into_into_dart(self) -> crate::types::Contact {
         self
     }
 }
@@ -586,6 +880,143 @@ impl flutter_rust_bridge::IntoIntoDart<crate::api::simple::Election>
     for crate::api::simple::Election
 {
     fn into_into_dart(self) -> crate::api::simple::Election {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::types::Fee {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.scheme.into_into_dart().into_dart(),
+            self.fee.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::types::Fee {}
+impl flutter_rust_bridge::IntoIntoDart<crate::types::Fee> for crate::types::Fee {
+    fn into_into_dart(self) -> crate::types::Fee {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::types::PoolBalance {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.transparent.into_into_dart().into_dart(),
+            self.sapling.into_into_dart().into_dart(),
+            self.orchard.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::types::PoolBalance {}
+impl flutter_rust_bridge::IntoIntoDart<crate::types::PoolBalance> for crate::types::PoolBalance {
+    fn into_into_dart(self) -> crate::types::PoolBalance {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::types::Progress {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.timestamp.into_into_dart().into_dart(),
+            self.trial_decryptions.into_into_dart().into_dart(),
+            self.height.into_into_dart().into_dart(),
+            self.downloaded.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::types::Progress {}
+impl flutter_rust_bridge::IntoIntoDart<crate::types::Progress> for crate::types::Progress {
+    fn into_into_dart(self) -> crate::types::Progress {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::types::Quote {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.timestamp.into_into_dart().into_dart(),
+            self.price.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::types::Quote {}
+impl flutter_rust_bridge::IntoIntoDart<crate::types::Quote> for crate::types::Quote {
+    fn into_into_dart(self) -> crate::types::Quote {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::types::ShieldedNote {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.height.into_into_dart().into_dart(),
+            self.value.into_into_dart().into_dart(),
+            self.timestamp.into_into_dart().into_dart(),
+            self.orchard.into_into_dart().into_dart(),
+            self.excluded.into_into_dart().into_dart(),
+            self.spent.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::types::ShieldedNote {}
+impl flutter_rust_bridge::IntoIntoDart<crate::types::ShieldedNote> for crate::types::ShieldedNote {
+    fn into_into_dart(self) -> crate::types::ShieldedNote {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::types::Spending {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.recipient.into_into_dart().into_dart(),
+            self.amount.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::types::Spending {}
+impl flutter_rust_bridge::IntoIntoDart<crate::types::Spending> for crate::types::Spending {
+    fn into_into_dart(self) -> crate::types::Spending {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::types::TxMemo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.direction.into_into_dart().into_dart(),
+            self.address.into_into_dart().into_dart(),
+            self.memo.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::types::TxMemo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::types::TxMemo> for crate::types::TxMemo {
+    fn into_into_dart(self) -> crate::types::TxMemo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::types::TxTimeValue {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.timestamp.into_into_dart().into_dart(),
+            self.value.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::types::TxTimeValue {}
+impl flutter_rust_bridge::IntoIntoDart<crate::types::TxTimeValue> for crate::types::TxTimeValue {
+    fn into_into_dart(self) -> crate::types::TxTimeValue {
         self
     }
 }
@@ -629,6 +1060,20 @@ impl SseEncode for String {
     }
 }
 
+impl SseEncode for crate::types::Backup {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.name, serializer);
+        <Option<String>>::sse_encode(self.seed, serializer);
+        <u32>::sse_encode(self.index, serializer);
+        <Option<String>>::sse_encode(self.sk, serializer);
+        <String>::sse_encode(self.fvk, serializer);
+        <String>::sse_encode(self.uvk, serializer);
+        <Option<String>>::sse_encode(self.tsk, serializer);
+        <bool>::sse_encode(self.saved, serializer);
+    }
+}
+
 impl SseEncode for bool {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -640,6 +1085,15 @@ impl SseEncode for crate::api::simple::Choice {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <String>::sse_encode(self.choice, serializer);
+        <String>::sse_encode(self.address, serializer);
+    }
+}
+
+impl SseEncode for crate::types::Contact {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <u32>::sse_encode(self.id, serializer);
+        <String>::sse_encode(self.name, serializer);
         <String>::sse_encode(self.address, serializer);
     }
 }
@@ -656,6 +1110,28 @@ impl SseEncode for crate::api::simple::Election {
         <bool>::sse_encode(self.signature_required, serializer);
         <String>::sse_encode(self.address, serializer);
         <bool>::sse_encode(self.downloaded, serializer);
+    }
+}
+
+impl SseEncode for f64 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_f64::<NativeEndian>(self).unwrap();
+    }
+}
+
+impl SseEncode for crate::types::Fee {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <u8>::sse_encode(self.scheme, serializer);
+        <u64>::sse_encode(self.fee, serializer);
+    }
+}
+
+impl SseEncode for i64 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_i64::<NativeEndian>(self).unwrap();
     }
 }
 
@@ -689,6 +1165,16 @@ impl SseEncode for Vec<crate::api::simple::Vote> {
     }
 }
 
+impl SseEncode for Option<String> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <String>::sse_encode(value, serializer);
+        }
+    }
+}
+
 impl SseEncode for Option<u32> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -696,6 +1182,71 @@ impl SseEncode for Option<u32> {
         if let Some(value) = self {
             <u32>::sse_encode(value, serializer);
         }
+    }
+}
+
+impl SseEncode for crate::types::PoolBalance {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <u64>::sse_encode(self.transparent, serializer);
+        <u64>::sse_encode(self.sapling, serializer);
+        <u64>::sse_encode(self.orchard, serializer);
+    }
+}
+
+impl SseEncode for crate::types::Progress {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <u32>::sse_encode(self.timestamp, serializer);
+        <u32>::sse_encode(self.trial_decryptions, serializer);
+        <u32>::sse_encode(self.height, serializer);
+        <u32>::sse_encode(self.downloaded, serializer);
+    }
+}
+
+impl SseEncode for crate::types::Quote {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <u32>::sse_encode(self.timestamp, serializer);
+        <f64>::sse_encode(self.price, serializer);
+    }
+}
+
+impl SseEncode for crate::types::ShieldedNote {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <u32>::sse_encode(self.id, serializer);
+        <u32>::sse_encode(self.height, serializer);
+        <u64>::sse_encode(self.value, serializer);
+        <u32>::sse_encode(self.timestamp, serializer);
+        <bool>::sse_encode(self.orchard, serializer);
+        <bool>::sse_encode(self.excluded, serializer);
+        <bool>::sse_encode(self.spent, serializer);
+    }
+}
+
+impl SseEncode for crate::types::Spending {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.recipient, serializer);
+        <i64>::sse_encode(self.amount, serializer);
+    }
+}
+
+impl SseEncode for crate::types::TxMemo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <u8>::sse_encode(self.direction, serializer);
+        <String>::sse_encode(self.address, serializer);
+        <String>::sse_encode(self.memo, serializer);
+    }
+}
+
+impl SseEncode for crate::types::TxTimeValue {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <u32>::sse_encode(self.timestamp, serializer);
+        <i64>::sse_encode(self.value, serializer);
     }
 }
 

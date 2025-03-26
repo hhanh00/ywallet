@@ -17,9 +17,10 @@ use zcash_vote::{
     trees::{list_cmxs, list_nf_ranges},
 };
 
-use crate::{db::open_db, frb_generated::StreamSink};
+use crate::{db::open_db, frb_generated::StreamSink, types::{Backup, PoolBalance}};
 
 use super::{AppState, DBS};
+use crate::types::*;
 
 pub async fn create_election(
     filepath: String,
@@ -406,3 +407,21 @@ pub struct Vote {
     pub amount: u64,
     pub height: Option<u32>,
 }
+
+#[frb(sync)]
+pub fn getBackup(coin: u8, id: u32) -> Result<Backup> {
+    todo!()
+}
+
+#[frb(sync)]
+pub fn dummy(
+    _a1: &PoolBalance,
+    _a2: &Spending,
+    _a3: &TxTimeValue,
+    _a4: &Quote,
+    _a5: &Fee,
+    _a6: &Progress,
+    _a7: &Contact,
+    _a8: &TxMemo,
+    _a9: &ShieldedNote,
+) {}

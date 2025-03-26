@@ -10,6 +10,7 @@ import 'frb_generated.dart';
 import 'frb_generated.io.dart'
     if (dart.library.js_interop) 'frb_generated.web.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'types.dart';
 
 /// Main entrypoint of the Rust API
 class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
@@ -68,7 +69,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.9.0';
 
   @override
-  int get rustContentHash => -1968354222;
+  int get rustContentHash => 716845890;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -86,6 +87,19 @@ abstract class RustLibApi extends BaseApi {
       required String key});
 
   Stream<int> crateApiSimpleDownload({required String filepath});
+
+  void crateApiSimpleDummy(
+      {required PoolBalance a1,
+      required Spending a2,
+      required TxTimeValue a3,
+      required Quote a4,
+      required Fee a5,
+      required Progress a6,
+      required Contact a7,
+      required TxMemo a8,
+      required ShieldedNote a9});
+
+  Backup crateApiSimpleGetBackup({required int coin, required int id});
 
   Future<BigInt> crateApiSimpleGetBalance({required String filepath});
 
@@ -171,13 +185,77 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
+  void crateApiSimpleDummy(
+      {required PoolBalance a1,
+      required Spending a2,
+      required TxTimeValue a3,
+      required Quote a4,
+      required Fee a5,
+      required Progress a6,
+      required Contact a7,
+      required TxMemo a8,
+      required ShieldedNote a9}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_box_autoadd_pool_balance(a1, serializer);
+        sse_encode_box_autoadd_spending(a2, serializer);
+        sse_encode_box_autoadd_tx_time_value(a3, serializer);
+        sse_encode_box_autoadd_quote(a4, serializer);
+        sse_encode_box_autoadd_fee(a5, serializer);
+        sse_encode_box_autoadd_progress(a6, serializer);
+        sse_encode_box_autoadd_contact(a7, serializer);
+        sse_encode_box_autoadd_tx_memo(a8, serializer);
+        sse_encode_box_autoadd_shielded_note(a9, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 3)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiSimpleDummyConstMeta,
+      argValues: [a1, a2, a3, a4, a5, a6, a7, a8, a9],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiSimpleDummyConstMeta => const TaskConstMeta(
+        debugName: "dummy",
+        argNames: ["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9"],
+      );
+
+  @override
+  Backup crateApiSimpleGetBackup({required int coin, required int id}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_u_8(coin, serializer);
+        sse_encode_u_32(id, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 4)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_backup,
+        decodeErrorData: sse_decode_AnyhowException,
+      ),
+      constMeta: kCrateApiSimpleGetBackupConstMeta,
+      argValues: [coin, id],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiSimpleGetBackupConstMeta => const TaskConstMeta(
+        debugName: "getBackup",
+        argNames: ["coin", "id"],
+      );
+
+  @override
   Future<BigInt> crateApiSimpleGetBalance({required String filepath}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_String(filepath, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 3, port: port_);
+            funcId: 5, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_u_64,
@@ -201,7 +279,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_String(filepath, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 4, port: port_);
+            funcId: 6, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_election,
@@ -224,7 +302,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 5, port: port_);
+            funcId: 7, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -248,7 +326,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_String(filepath, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 6, port: port_);
+            funcId: 8, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_list_vote,
@@ -272,7 +350,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_String(filepath, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 7, port: port_);
+            funcId: 9, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -301,7 +379,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_String(address, serializer);
         sse_encode_u_64(amount, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 8, port: port_);
+            funcId: 10, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_String,
@@ -337,9 +415,81 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  Backup dco_decode_backup(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 8)
+      throw Exception('unexpected arr length: expect 8 but see ${arr.length}');
+    return Backup(
+      name: dco_decode_String(arr[0]),
+      seed: dco_decode_opt_String(arr[1]),
+      index: dco_decode_u_32(arr[2]),
+      sk: dco_decode_opt_String(arr[3]),
+      fvk: dco_decode_String(arr[4]),
+      uvk: dco_decode_String(arr[5]),
+      tsk: dco_decode_opt_String(arr[6]),
+      saved: dco_decode_bool(arr[7]),
+    );
+  }
+
+  @protected
   bool dco_decode_bool(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as bool;
+  }
+
+  @protected
+  Contact dco_decode_box_autoadd_contact(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_contact(raw);
+  }
+
+  @protected
+  Fee dco_decode_box_autoadd_fee(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_fee(raw);
+  }
+
+  @protected
+  PoolBalance dco_decode_box_autoadd_pool_balance(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_pool_balance(raw);
+  }
+
+  @protected
+  Progress dco_decode_box_autoadd_progress(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_progress(raw);
+  }
+
+  @protected
+  Quote dco_decode_box_autoadd_quote(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_quote(raw);
+  }
+
+  @protected
+  ShieldedNote dco_decode_box_autoadd_shielded_note(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_shielded_note(raw);
+  }
+
+  @protected
+  Spending dco_decode_box_autoadd_spending(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_spending(raw);
+  }
+
+  @protected
+  TxMemo dco_decode_box_autoadd_tx_memo(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_tx_memo(raw);
+  }
+
+  @protected
+  TxTimeValue dco_decode_box_autoadd_tx_time_value(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_tx_time_value(raw);
   }
 
   @protected
@@ -357,6 +507,19 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     return Choice(
       choice: dco_decode_String(arr[0]),
       address: dco_decode_String(arr[1]),
+    );
+  }
+
+  @protected
+  Contact dco_decode_contact(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 3)
+      throw Exception('unexpected arr length: expect 3 but see ${arr.length}');
+    return Contact(
+      id: dco_decode_u_32(arr[0]),
+      name: dco_decode_String(arr[1]),
+      address: dco_decode_String(arr[2]),
     );
   }
 
@@ -380,6 +543,30 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  double dco_decode_f_64(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as double;
+  }
+
+  @protected
+  Fee dco_decode_fee(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+    return Fee(
+      scheme: dco_decode_u_8(arr[0]),
+      fee: dco_decode_u_64(arr[1]),
+    );
+  }
+
+  @protected
+  PlatformInt64 dco_decode_i_64(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dcoDecodeI64(raw);
+  }
+
+  @protected
   List<Choice> dco_decode_list_choice(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return (raw as List<dynamic>).map(dco_decode_choice).toList();
@@ -398,9 +585,108 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  String? dco_decode_opt_String(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null ? null : dco_decode_String(raw);
+  }
+
+  @protected
   int? dco_decode_opt_box_autoadd_u_32(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw == null ? null : dco_decode_box_autoadd_u_32(raw);
+  }
+
+  @protected
+  PoolBalance dco_decode_pool_balance(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 3)
+      throw Exception('unexpected arr length: expect 3 but see ${arr.length}');
+    return PoolBalance(
+      transparent: dco_decode_u_64(arr[0]),
+      sapling: dco_decode_u_64(arr[1]),
+      orchard: dco_decode_u_64(arr[2]),
+    );
+  }
+
+  @protected
+  Progress dco_decode_progress(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 4)
+      throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
+    return Progress(
+      timestamp: dco_decode_u_32(arr[0]),
+      trialDecryptions: dco_decode_u_32(arr[1]),
+      height: dco_decode_u_32(arr[2]),
+      downloaded: dco_decode_u_32(arr[3]),
+    );
+  }
+
+  @protected
+  Quote dco_decode_quote(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+    return Quote(
+      timestamp: dco_decode_u_32(arr[0]),
+      price: dco_decode_f_64(arr[1]),
+    );
+  }
+
+  @protected
+  ShieldedNote dco_decode_shielded_note(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 7)
+      throw Exception('unexpected arr length: expect 7 but see ${arr.length}');
+    return ShieldedNote(
+      id: dco_decode_u_32(arr[0]),
+      height: dco_decode_u_32(arr[1]),
+      value: dco_decode_u_64(arr[2]),
+      timestamp: dco_decode_u_32(arr[3]),
+      orchard: dco_decode_bool(arr[4]),
+      excluded: dco_decode_bool(arr[5]),
+      spent: dco_decode_bool(arr[6]),
+    );
+  }
+
+  @protected
+  Spending dco_decode_spending(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+    return Spending(
+      recipient: dco_decode_String(arr[0]),
+      amount: dco_decode_i_64(arr[1]),
+    );
+  }
+
+  @protected
+  TxMemo dco_decode_tx_memo(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 3)
+      throw Exception('unexpected arr length: expect 3 but see ${arr.length}');
+    return TxMemo(
+      direction: dco_decode_u_8(arr[0]),
+      address: dco_decode_String(arr[1]),
+      memo: dco_decode_String(arr[2]),
+    );
+  }
+
+  @protected
+  TxTimeValue dco_decode_tx_time_value(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+    return TxTimeValue(
+      timestamp: dco_decode_u_32(arr[0]),
+      value: dco_decode_i_64(arr[1]),
+    );
   }
 
   @protected
@@ -463,9 +749,88 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  Backup sse_decode_backup(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_name = sse_decode_String(deserializer);
+    var var_seed = sse_decode_opt_String(deserializer);
+    var var_index = sse_decode_u_32(deserializer);
+    var var_sk = sse_decode_opt_String(deserializer);
+    var var_fvk = sse_decode_String(deserializer);
+    var var_uvk = sse_decode_String(deserializer);
+    var var_tsk = sse_decode_opt_String(deserializer);
+    var var_saved = sse_decode_bool(deserializer);
+    return Backup(
+        name: var_name,
+        seed: var_seed,
+        index: var_index,
+        sk: var_sk,
+        fvk: var_fvk,
+        uvk: var_uvk,
+        tsk: var_tsk,
+        saved: var_saved);
+  }
+
+  @protected
   bool sse_decode_bool(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getUint8() != 0;
+  }
+
+  @protected
+  Contact sse_decode_box_autoadd_contact(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_contact(deserializer));
+  }
+
+  @protected
+  Fee sse_decode_box_autoadd_fee(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_fee(deserializer));
+  }
+
+  @protected
+  PoolBalance sse_decode_box_autoadd_pool_balance(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_pool_balance(deserializer));
+  }
+
+  @protected
+  Progress sse_decode_box_autoadd_progress(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_progress(deserializer));
+  }
+
+  @protected
+  Quote sse_decode_box_autoadd_quote(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_quote(deserializer));
+  }
+
+  @protected
+  ShieldedNote sse_decode_box_autoadd_shielded_note(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_shielded_note(deserializer));
+  }
+
+  @protected
+  Spending sse_decode_box_autoadd_spending(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_spending(deserializer));
+  }
+
+  @protected
+  TxMemo sse_decode_box_autoadd_tx_memo(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_tx_memo(deserializer));
+  }
+
+  @protected
+  TxTimeValue sse_decode_box_autoadd_tx_time_value(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_tx_time_value(deserializer));
   }
 
   @protected
@@ -480,6 +845,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     var var_choice = sse_decode_String(deserializer);
     var var_address = sse_decode_String(deserializer);
     return Choice(choice: var_choice, address: var_address);
+  }
+
+  @protected
+  Contact sse_decode_contact(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_id = sse_decode_u_32(deserializer);
+    var var_name = sse_decode_String(deserializer);
+    var var_address = sse_decode_String(deserializer);
+    return Contact(id: var_id, name: var_name, address: var_address);
   }
 
   @protected
@@ -504,6 +878,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         signatureRequired: var_signatureRequired,
         address: var_address,
         downloaded: var_downloaded);
+  }
+
+  @protected
+  double sse_decode_f_64(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getFloat64();
+  }
+
+  @protected
+  Fee sse_decode_fee(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_scheme = sse_decode_u_8(deserializer);
+    var var_fee = sse_decode_u_64(deserializer);
+    return Fee(scheme: var_scheme, fee: var_fee);
+  }
+
+  @protected
+  PlatformInt64 sse_decode_i_64(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getPlatformInt64();
   }
 
   @protected
@@ -538,6 +932,17 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  String? sse_decode_opt_String(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_String(deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
   int? sse_decode_opt_box_autoadd_u_32(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
 
@@ -546,6 +951,86 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     } else {
       return null;
     }
+  }
+
+  @protected
+  PoolBalance sse_decode_pool_balance(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_transparent = sse_decode_u_64(deserializer);
+    var var_sapling = sse_decode_u_64(deserializer);
+    var var_orchard = sse_decode_u_64(deserializer);
+    return PoolBalance(
+        transparent: var_transparent,
+        sapling: var_sapling,
+        orchard: var_orchard);
+  }
+
+  @protected
+  Progress sse_decode_progress(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_timestamp = sse_decode_u_32(deserializer);
+    var var_trialDecryptions = sse_decode_u_32(deserializer);
+    var var_height = sse_decode_u_32(deserializer);
+    var var_downloaded = sse_decode_u_32(deserializer);
+    return Progress(
+        timestamp: var_timestamp,
+        trialDecryptions: var_trialDecryptions,
+        height: var_height,
+        downloaded: var_downloaded);
+  }
+
+  @protected
+  Quote sse_decode_quote(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_timestamp = sse_decode_u_32(deserializer);
+    var var_price = sse_decode_f_64(deserializer);
+    return Quote(timestamp: var_timestamp, price: var_price);
+  }
+
+  @protected
+  ShieldedNote sse_decode_shielded_note(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_id = sse_decode_u_32(deserializer);
+    var var_height = sse_decode_u_32(deserializer);
+    var var_value = sse_decode_u_64(deserializer);
+    var var_timestamp = sse_decode_u_32(deserializer);
+    var var_orchard = sse_decode_bool(deserializer);
+    var var_excluded = sse_decode_bool(deserializer);
+    var var_spent = sse_decode_bool(deserializer);
+    return ShieldedNote(
+        id: var_id,
+        height: var_height,
+        value: var_value,
+        timestamp: var_timestamp,
+        orchard: var_orchard,
+        excluded: var_excluded,
+        spent: var_spent);
+  }
+
+  @protected
+  Spending sse_decode_spending(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_recipient = sse_decode_String(deserializer);
+    var var_amount = sse_decode_i_64(deserializer);
+    return Spending(recipient: var_recipient, amount: var_amount);
+  }
+
+  @protected
+  TxMemo sse_decode_tx_memo(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_direction = sse_decode_u_8(deserializer);
+    var var_address = sse_decode_String(deserializer);
+    var var_memo = sse_decode_String(deserializer);
+    return TxMemo(
+        direction: var_direction, address: var_address, memo: var_memo);
+  }
+
+  @protected
+  TxTimeValue sse_decode_tx_time_value(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_timestamp = sse_decode_u_32(deserializer);
+    var var_value = sse_decode_i_64(deserializer);
+    return TxTimeValue(timestamp: var_timestamp, value: var_value);
   }
 
   @protected
@@ -618,9 +1103,81 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_backup(Backup self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_String(self.name, serializer);
+    sse_encode_opt_String(self.seed, serializer);
+    sse_encode_u_32(self.index, serializer);
+    sse_encode_opt_String(self.sk, serializer);
+    sse_encode_String(self.fvk, serializer);
+    sse_encode_String(self.uvk, serializer);
+    sse_encode_opt_String(self.tsk, serializer);
+    sse_encode_bool(self.saved, serializer);
+  }
+
+  @protected
   void sse_encode_bool(bool self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putUint8(self ? 1 : 0);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_contact(Contact self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_contact(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_fee(Fee self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_fee(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_pool_balance(
+      PoolBalance self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_pool_balance(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_progress(
+      Progress self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_progress(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_quote(Quote self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_quote(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_shielded_note(
+      ShieldedNote self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_shielded_note(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_spending(
+      Spending self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_spending(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_tx_memo(TxMemo self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_tx_memo(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_tx_time_value(
+      TxTimeValue self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_tx_time_value(self, serializer);
   }
 
   @protected
@@ -637,6 +1194,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_contact(Contact self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_u_32(self.id, serializer);
+    sse_encode_String(self.name, serializer);
+    sse_encode_String(self.address, serializer);
+  }
+
+  @protected
   void sse_encode_election(Election self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_String(self.id, serializer);
@@ -648,6 +1213,25 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     sse_encode_bool(self.signatureRequired, serializer);
     sse_encode_String(self.address, serializer);
     sse_encode_bool(self.downloaded, serializer);
+  }
+
+  @protected
+  void sse_encode_f_64(double self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putFloat64(self);
+  }
+
+  @protected
+  void sse_encode_fee(Fee self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_u_8(self.scheme, serializer);
+    sse_encode_u_64(self.fee, serializer);
+  }
+
+  @protected
+  void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putPlatformInt64(self);
   }
 
   @protected
@@ -677,6 +1261,16 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_opt_String(String? self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_String(self, serializer);
+    }
+  }
+
+  @protected
   void sse_encode_opt_box_autoadd_u_32(int? self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
 
@@ -684,6 +1278,64 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     if (self != null) {
       sse_encode_box_autoadd_u_32(self, serializer);
     }
+  }
+
+  @protected
+  void sse_encode_pool_balance(PoolBalance self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_u_64(self.transparent, serializer);
+    sse_encode_u_64(self.sapling, serializer);
+    sse_encode_u_64(self.orchard, serializer);
+  }
+
+  @protected
+  void sse_encode_progress(Progress self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_u_32(self.timestamp, serializer);
+    sse_encode_u_32(self.trialDecryptions, serializer);
+    sse_encode_u_32(self.height, serializer);
+    sse_encode_u_32(self.downloaded, serializer);
+  }
+
+  @protected
+  void sse_encode_quote(Quote self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_u_32(self.timestamp, serializer);
+    sse_encode_f_64(self.price, serializer);
+  }
+
+  @protected
+  void sse_encode_shielded_note(ShieldedNote self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_u_32(self.id, serializer);
+    sse_encode_u_32(self.height, serializer);
+    sse_encode_u_64(self.value, serializer);
+    sse_encode_u_32(self.timestamp, serializer);
+    sse_encode_bool(self.orchard, serializer);
+    sse_encode_bool(self.excluded, serializer);
+    sse_encode_bool(self.spent, serializer);
+  }
+
+  @protected
+  void sse_encode_spending(Spending self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_String(self.recipient, serializer);
+    sse_encode_i_64(self.amount, serializer);
+  }
+
+  @protected
+  void sse_encode_tx_memo(TxMemo self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_u_8(self.direction, serializer);
+    sse_encode_String(self.address, serializer);
+    sse_encode_String(self.memo, serializer);
+  }
+
+  @protected
+  void sse_encode_tx_time_value(TxTimeValue self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_u_32(self.timestamp, serializer);
+    sse_encode_i_64(self.value, serializer);
   }
 
   @protected

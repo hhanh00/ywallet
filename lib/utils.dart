@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -72,6 +73,11 @@ Future<bool> showMessageBox2(BuildContext context, String title, String content,
   return confirm ?? false;
 }
 
+extension ScopeFunctions<T> on T {
+  R let<R>(R Function(T) block) => block(this);
+}
+
+// #region Paths
 Future<String> getDataPath() async {
   String? home;
   if (Platform.isAndroid)
@@ -84,4 +90,42 @@ Future<String> getDataPath() async {
   if (Platform.isIOS) home = (await getApplicationDocumentsDirectory()).path;
   final h = home ?? "";
   return h;
+}
+
+Future<String> getTempPath() async {
+  if (isMobile()) {
+    final d = await getTemporaryDirectory();
+    return d.path;
+  }
+  final dataPath = await getDataPath();
+  final tempPath = p.join(dataPath, "tmp");
+  Directory(tempPath).createSync(recursive: true);
+  return tempPath;
+}
+
+Future<String> getDbPath() async {
+  if (Platform.isIOS) return (await getApplicationDocumentsDirectory()).path;
+  final h = await getDataPath();
+  return "$h/databases";
+}
+// #endregion
+
+bool isMobile() => Platform.isAndroid || Platform.isIOS;
+
+class TimeSeriesPoint<V> {
+  final int day;
+  final V value;
+
+  TimeSeriesPoint(this.day, this.value);
+
+  @override
+  String toString() => '($day, $value)';
+}
+
+DateTime toDateTime(int ts) => DateTime.fromMillisecondsSinceEpoch(ts * 1000);
+
+String centerTrim(String v, {int leading = 2, int length = 16}) {
+  if (v.length <= length) return v;
+  final e = v.length - length + leading;
+  return "${v.substring(0, leading)}...${v.substring(e)}";
 }

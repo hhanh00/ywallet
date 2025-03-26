@@ -11,6 +11,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated_web.dart';
+import 'types.dart';
 
 abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   RustLibApiImplPlatform({
@@ -30,7 +31,37 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   String dco_decode_String(dynamic raw);
 
   @protected
+  Backup dco_decode_backup(dynamic raw);
+
+  @protected
   bool dco_decode_bool(dynamic raw);
+
+  @protected
+  Contact dco_decode_box_autoadd_contact(dynamic raw);
+
+  @protected
+  Fee dco_decode_box_autoadd_fee(dynamic raw);
+
+  @protected
+  PoolBalance dco_decode_box_autoadd_pool_balance(dynamic raw);
+
+  @protected
+  Progress dco_decode_box_autoadd_progress(dynamic raw);
+
+  @protected
+  Quote dco_decode_box_autoadd_quote(dynamic raw);
+
+  @protected
+  ShieldedNote dco_decode_box_autoadd_shielded_note(dynamic raw);
+
+  @protected
+  Spending dco_decode_box_autoadd_spending(dynamic raw);
+
+  @protected
+  TxMemo dco_decode_box_autoadd_tx_memo(dynamic raw);
+
+  @protected
+  TxTimeValue dco_decode_box_autoadd_tx_time_value(dynamic raw);
 
   @protected
   int dco_decode_box_autoadd_u_32(dynamic raw);
@@ -39,7 +70,19 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Choice dco_decode_choice(dynamic raw);
 
   @protected
+  Contact dco_decode_contact(dynamic raw);
+
+  @protected
   Election dco_decode_election(dynamic raw);
+
+  @protected
+  double dco_decode_f_64(dynamic raw);
+
+  @protected
+  Fee dco_decode_fee(dynamic raw);
+
+  @protected
+  PlatformInt64 dco_decode_i_64(dynamic raw);
 
   @protected
   List<Choice> dco_decode_list_choice(dynamic raw);
@@ -51,7 +94,31 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   List<Vote> dco_decode_list_vote(dynamic raw);
 
   @protected
+  String? dco_decode_opt_String(dynamic raw);
+
+  @protected
   int? dco_decode_opt_box_autoadd_u_32(dynamic raw);
+
+  @protected
+  PoolBalance dco_decode_pool_balance(dynamic raw);
+
+  @protected
+  Progress dco_decode_progress(dynamic raw);
+
+  @protected
+  Quote dco_decode_quote(dynamic raw);
+
+  @protected
+  ShieldedNote dco_decode_shielded_note(dynamic raw);
+
+  @protected
+  Spending dco_decode_spending(dynamic raw);
+
+  @protected
+  TxMemo dco_decode_tx_memo(dynamic raw);
+
+  @protected
+  TxTimeValue dco_decode_tx_time_value(dynamic raw);
 
   @protected
   int dco_decode_u_32(dynamic raw);
@@ -79,7 +146,39 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   String sse_decode_String(SseDeserializer deserializer);
 
   @protected
+  Backup sse_decode_backup(SseDeserializer deserializer);
+
+  @protected
   bool sse_decode_bool(SseDeserializer deserializer);
+
+  @protected
+  Contact sse_decode_box_autoadd_contact(SseDeserializer deserializer);
+
+  @protected
+  Fee sse_decode_box_autoadd_fee(SseDeserializer deserializer);
+
+  @protected
+  PoolBalance sse_decode_box_autoadd_pool_balance(SseDeserializer deserializer);
+
+  @protected
+  Progress sse_decode_box_autoadd_progress(SseDeserializer deserializer);
+
+  @protected
+  Quote sse_decode_box_autoadd_quote(SseDeserializer deserializer);
+
+  @protected
+  ShieldedNote sse_decode_box_autoadd_shielded_note(
+      SseDeserializer deserializer);
+
+  @protected
+  Spending sse_decode_box_autoadd_spending(SseDeserializer deserializer);
+
+  @protected
+  TxMemo sse_decode_box_autoadd_tx_memo(SseDeserializer deserializer);
+
+  @protected
+  TxTimeValue sse_decode_box_autoadd_tx_time_value(
+      SseDeserializer deserializer);
 
   @protected
   int sse_decode_box_autoadd_u_32(SseDeserializer deserializer);
@@ -88,7 +187,19 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Choice sse_decode_choice(SseDeserializer deserializer);
 
   @protected
+  Contact sse_decode_contact(SseDeserializer deserializer);
+
+  @protected
   Election sse_decode_election(SseDeserializer deserializer);
+
+  @protected
+  double sse_decode_f_64(SseDeserializer deserializer);
+
+  @protected
+  Fee sse_decode_fee(SseDeserializer deserializer);
+
+  @protected
+  PlatformInt64 sse_decode_i_64(SseDeserializer deserializer);
 
   @protected
   List<Choice> sse_decode_list_choice(SseDeserializer deserializer);
@@ -100,7 +211,31 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   List<Vote> sse_decode_list_vote(SseDeserializer deserializer);
 
   @protected
+  String? sse_decode_opt_String(SseDeserializer deserializer);
+
+  @protected
   int? sse_decode_opt_box_autoadd_u_32(SseDeserializer deserializer);
+
+  @protected
+  PoolBalance sse_decode_pool_balance(SseDeserializer deserializer);
+
+  @protected
+  Progress sse_decode_progress(SseDeserializer deserializer);
+
+  @protected
+  Quote sse_decode_quote(SseDeserializer deserializer);
+
+  @protected
+  ShieldedNote sse_decode_shielded_note(SseDeserializer deserializer);
+
+  @protected
+  Spending sse_decode_spending(SseDeserializer deserializer);
+
+  @protected
+  TxMemo sse_decode_tx_memo(SseDeserializer deserializer);
+
+  @protected
+  TxTimeValue sse_decode_tx_time_value(SseDeserializer deserializer);
 
   @protected
   int sse_decode_u_32(SseDeserializer deserializer);
@@ -132,7 +267,40 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_String(String self, SseSerializer serializer);
 
   @protected
+  void sse_encode_backup(Backup self, SseSerializer serializer);
+
+  @protected
   void sse_encode_bool(bool self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_contact(Contact self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_fee(Fee self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_pool_balance(
+      PoolBalance self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_progress(Progress self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_quote(Quote self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_shielded_note(
+      ShieldedNote self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_spending(Spending self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_tx_memo(TxMemo self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_tx_time_value(
+      TxTimeValue self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_u_32(int self, SseSerializer serializer);
@@ -141,7 +309,19 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_choice(Choice self, SseSerializer serializer);
 
   @protected
+  void sse_encode_contact(Contact self, SseSerializer serializer);
+
+  @protected
   void sse_encode_election(Election self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_f_64(double self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_fee(Fee self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer);
 
   @protected
   void sse_encode_list_choice(List<Choice> self, SseSerializer serializer);
@@ -154,7 +334,31 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_list_vote(List<Vote> self, SseSerializer serializer);
 
   @protected
+  void sse_encode_opt_String(String? self, SseSerializer serializer);
+
+  @protected
   void sse_encode_opt_box_autoadd_u_32(int? self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_pool_balance(PoolBalance self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_progress(Progress self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_quote(Quote self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_shielded_note(ShieldedNote self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_spending(Spending self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_tx_memo(TxMemo self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_tx_time_value(TxTimeValue self, SseSerializer serializer);
 
   @protected
   void sse_encode_u_32(int self, SseSerializer serializer);

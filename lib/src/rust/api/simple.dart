@@ -4,6 +4,7 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../frb_generated.dart';
+import '../types.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'simple.freezed.dart';
@@ -39,6 +40,22 @@ Future<void> synchronize({required String filepath}) =>
 
 Future<List<Vote>> listVotes({required String filepath}) =>
     RustLib.instance.api.crateApiSimpleListVotes(filepath: filepath);
+
+Backup getBackup({required int coin, required int id}) =>
+    RustLib.instance.api.crateApiSimpleGetBackup(coin: coin, id: id);
+
+void dummy(
+        {required PoolBalance a1,
+        required Spending a2,
+        required TxTimeValue a3,
+        required Quote a4,
+        required Fee a5,
+        required Progress a6,
+        required Contact a7,
+        required TxMemo a8,
+        required ShieldedNote a9}) =>
+    RustLib.instance.api.crateApiSimpleDummy(
+        a1: a1, a2: a2, a3: a3, a4: a4, a5: a5, a6: a6, a7: a7, a8: a8, a9: a9);
 
 @freezed
 class Choice with _$Choice {
