@@ -1,0 +1,64 @@
+name: Build and Release MacOS Universal
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches-ignore:
+      - "release-please--*"
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Download params
+        run: |
+          rustup target add aarch64-apple-darwin
+          mkdir -p $HOME/.zcash-params
+          curl https://download.z.cash/downloads/sapling-output.params --output $HOME/.zcash-params/sapling-output.params
+          curl https://download.z.cash/downloads/sapling-spend.params --output $HOME/.zcash-params/sapling-spend.params
+      - name: Build vars
+        run: |
+          cat build.env >> $GITHUB_ENV
+      - name: Build
+        run: |
+          export PATH=$PATH:$HOME/flutter/bin
+          (cd $HOME; git clone --branch $FLUTTER_VERSION --depth 1 https://github.com/flutter/flutter.git)
+          flutter pub get
+          flutter build macos
+      - name: Codesign
+        run: ./misc/codesign-notarize.sh
+        env:
+          KEYCHAIN_PWD: R5qx5GGokNBm
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_CERTIFICATE_NAME: ${{ secrets.APPLE_CERTIFICATE_NAME }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      - name: Install python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Package
+        run: |
+          python3 -m pip install packaging
+          npm install -g appdmg
+          (cd misc; appdmg app.json ../ywallet-universal.dmg)
+      - name: Upload dmg
+        uses: actions/upload-artifact@v4
+        with:
+          name: YWallet.dmg
+          path: ywallet-universal.dmg
+          retention-days: 3
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          files: ywallet-universal.dmg
