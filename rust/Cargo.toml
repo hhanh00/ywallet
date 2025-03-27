@@ -23,7 +23,7 @@ rand_core = "0.6.4"
 orchard = "0.3.0"
 
 zcash-vote = { git = "https://github.com/hhanh00/zcash-vote", rev = "2ec97ea" }
-zcash-warpsync = { git = "https://github.com/hhanh00/zcash-sync", rev = "86e8b7c" }
+zcash-warpsync = { git = "https://github.com/hhanh00/zcash-sync", rev = "be50e69" }
 #zcash-warpsync = { path = "../../ywallet/native/zcash-sync" }
 
 [features]

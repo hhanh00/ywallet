@@ -5556,7 +5556,7 @@ dependencies = [
 [[package]]
 name = "zcash-warpsync"
 version = "1.2.15"
-source = "git+https://github.com/hhanh00/zcash-sync?rev=86e8b7c#86e8b7c51ace2872f36121ff52ab00fdf64a6898"
+source = "git+https://github.com/hhanh00/zcash-sync?rev=be50e69#be50e696b76ba7381c27d3b7c8f2b86116fd8d0d"
 dependencies = [
  "age",
  "ambassador",
