@@ -19,7 +19,9 @@ mixin _$Choice {
   String get choice => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Choice
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChoiceCopyWith<Choice> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -41,6 +43,8 @@ class _$ChoiceCopyWithImpl<$Res, $Val extends Choice>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Choice
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -78,6 +82,8 @@ class __$$ChoiceImplCopyWithImpl<$Res>
       _$ChoiceImpl _value, $Res Function(_$ChoiceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Choice
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,7 +130,9 @@ class _$ChoiceImpl implements _Choice {
   @override
   int get hashCode => Object.hash(runtimeType, choice, address);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Choice
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChoiceImplCopyWith<_$ChoiceImpl> get copyWith =>
@@ -140,8 +148,11 @@ abstract class _Choice implements Choice {
   String get choice;
   @override
   String get address;
+
+  /// Create a copy of Choice
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChoiceImplCopyWith<_$ChoiceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -158,7 +169,9 @@ mixin _$Election {
   String get address => throw _privateConstructorUsedError;
   bool get downloaded => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Election
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ElectionCopyWith<Election> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -190,6 +203,8 @@ class _$ElectionCopyWithImpl<$Res, $Val extends Election>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Election
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -272,6 +287,8 @@ class __$$ElectionImplCopyWithImpl<$Res>
       _$ElectionImpl _value, $Res Function(_$ElectionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Election
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -406,7 +423,9 @@ class _$ElectionImpl implements _Election {
       address,
       downloaded);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Election
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ElectionImplCopyWith<_$ElectionImpl> get copyWith =>
@@ -443,8 +462,11 @@ abstract class _Election implements Election {
   String get address;
   @override
   bool get downloaded;
+
+  /// Create a copy of Election
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ElectionImplCopyWith<_$ElectionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -456,7 +478,9 @@ mixin _$Vote {
   BigInt get amount => throw _privateConstructorUsedError;
   int? get height => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Vote
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VoteCopyWith<Vote> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -478,6 +502,8 @@ class _$VoteCopyWithImpl<$Res, $Val extends Vote>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Vote
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -524,6 +550,8 @@ class __$$VoteImplCopyWithImpl<$Res>
   __$$VoteImplCopyWithImpl(_$VoteImpl _value, $Res Function(_$VoteImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Vote
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -590,7 +618,9 @@ class _$VoteImpl implements _Vote {
   @override
   int get hashCode => Object.hash(runtimeType, hash, address, amount, height);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Vote
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VoteImplCopyWith<_$VoteImpl> get copyWith =>
@@ -612,8 +642,11 @@ abstract class _Vote implements Vote {
   BigInt get amount;
   @override
   int? get height;
+
+  /// Create a copy of Vote
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VoteImplCopyWith<_$VoteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
