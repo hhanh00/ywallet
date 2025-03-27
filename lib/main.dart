@@ -10,6 +10,7 @@ import 'package:zwallet/src/rust/frb_generated.dart';
 import 'appsettings.dart';
 import 'main.reflectable.dart';
 import 'coin/coins.dart';
+import 'src/rust/api/warp.dart';
 import 'utils.dart';
 
 import 'init.dart';
@@ -36,7 +37,7 @@ void main() async {
   initNotifications();
   final prefs = await SharedPreferences.getInstance();
   final dbPath = await getDbPath();
-  print("db path $dbPath");
+  logger.i("db path $dbPath");
   await recoverDb(prefs, dbPath);
   runApp(App());
 }
@@ -54,7 +55,7 @@ Future<void> recoverDb(SharedPreferences prefs, String dbPath) async {
     await c.delete();
   }
   final dbDir = await getDbPath();
-  // WarpApi.unzipBackup(backupPath, dbDir); TODO
+  await unzipBackup(backup: backupPath, db: dbDir);
 }
 
 final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =

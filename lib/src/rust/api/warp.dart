@@ -58,7 +58,7 @@ Stream<Progress> warpSync(
         confs: confs,
         maxActions: maxActions);
 
-void rescanFrom({required int coin, required int height}) =>
+Future<int> rescanFrom({required int coin, required int height}) =>
     RustLib.instance.api.crateApiWarpRescanFrom(coin: coin, height: height);
 
 Future<List<Contact>> getContacts({required int coin}) =>
@@ -127,3 +127,6 @@ String makePaymentUri(
         required String memo}) =>
     RustLib.instance.api.crateApiWarpMakePaymentUri(
         coin: coin, address: address, amount: amount, memo: memo);
+
+Future<void> unzipBackup({required String backup, required String db}) =>
+    RustLib.instance.api.crateApiWarpUnzipBackup(backup: backup, db: db);

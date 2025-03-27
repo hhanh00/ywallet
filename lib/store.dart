@@ -191,7 +191,7 @@ abstract class _SyncStatus2 with Store {
 
   @action
   Future<void> rescan(int height) async {
-    rescanFrom(coin: aa.coin, height: height);
+    await rescanFrom(coin: aa.coin, height: height);
     _updateSyncedHeight();
     paused = false;
     await sync(true);
