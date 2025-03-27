@@ -8,7 +8,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../accounts.dart';
 import '../../coin/coins.dart';
 import '../../generated/intl/messages.dart';
+import '../../src/rust/api/warp.dart';
+import '../../src/rust/types.dart';
 import '../../utils.dart';
+import '../../widgets.dart';
 
 class NewImportAccountPage extends StatefulWidget {
   final bool first;
@@ -105,7 +108,7 @@ class _NewImportAccountState extends State<NewImportAccountPage>
                       onChanged: (v) => setState(() => _key = v!),
                       validator: _checkKey,
                     ),
-                    Gap(8),
+                    const Gap(8),
                     FormBuilderTextField(
                       name: 'account_index',
                       decoration: InputDecoration(label: Text(s.accountIndex)),
@@ -128,17 +131,17 @@ class _NewImportAccountState extends State<NewImportAccountPage>
       await load(() async {
         final index = int.parse(accountIndexController.text);
         final account =
-            await WarpApi.newAccount(coin, nameController.text, _key, index);
-        if (account < 0)
+            newAccount(coin: coin, name: nameController.text, key: _key, index: index);
+        if (account == null)
           form.fields['name']!.invalidate(s.thisAccountAlreadyExists);
         else {
           setActiveAccount(coin, account);
           final prefs = await SharedPreferences.getInstance();
           await aa.save(prefs);
-          final count = WarpApi.countAccounts(coin);
+          final count = countAccounts(coin: coin);
           if (count == 1) {
             // First account of a coin is synced
-            await WarpApi.skipToLastHeight(coin);
+            await skipToLastHeight(coin: coin);
           }
           if (widget.first) {
             if (_key.isNotEmpty)
@@ -154,19 +157,9 @@ class _NewImportAccountState extends State<NewImportAccountPage>
 
   String? _checkKey(String? v) {
     if (v == null || v.isEmpty) return null;
-    if (WarpApi.isValidTransparentKey(v)) return s.cannotUseTKey;
-    final keyType = WarpApi.validKey(coin, v);
-    if (keyType < 0) return s.invalidKey;
+    final kt = getKeyType(key: v);
+    if (kt.pools == 0) return s.invalidKey;
+    if (kt.pools  == 1) return s.cannotUseTKey;
     return null;
-  }
-
-  _importLedger() async {
-    try {
-      final account =
-          await WarpApi.importFromLedger(aa.coin, nameController.text);
-      setActiveAccount(coin, account);
-    } on String catch (msg) {
-      formKey.currentState!.fields['key']!.invalidate(msg);
-    }
   }
 }

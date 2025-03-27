@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:cross_file/cross_file.dart';
 import 'package:decimal/decimal.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -16,14 +18,15 @@ import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:zwallet/settings.pb.dart' show CoinSettings;
 import 'package:zwallet/src/rust/api/warp.dart';
-import 'package:flutter_palette/flutter_palette.dart';
 
 import 'appsettings.dart';
 import 'coin/coin.dart';
 import 'generated/intl/messages.dart';
 import 'main.dart';
+import 'router.dart';
 import 'src/rust/types.dart';
 import 'store.dart';
 
@@ -128,6 +131,39 @@ Future<String> getDbPath() async {
   if (Platform.isIOS) return (await getApplicationDocumentsDirectory()).path;
   final h = await getDataPath();
   return "$h/databases";
+}
+// #endregion
+
+// #region File operations
+Future<FilePickerResult?> pickFile() async {
+  if (isMobile()) {
+    await FilePicker.platform.clearTemporaryFiles();
+  }
+  final result = await FilePicker.platform.pickFiles();
+  return result;
+}
+
+Future<void> saveFileBinary(
+    List<int> data, String filename, String title) async {
+  if (isMobile()) {
+    final context = rootNavigatorKey.currentContext!;
+    Size size = MediaQuery.of(context).size;
+    final tempDir = await getTempPath();
+    final path = p.join(tempDir, filename);
+    final xfile = XFile(path);
+    final file = File(path);
+    await file.writeAsBytes(data);
+    await Share.shareXFiles([xfile],
+        subject: title,
+        sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 2));
+  } else {
+    final fn = await FilePicker.platform
+        .saveFile(dialogTitle: title, fileName: filename);
+    if (fn != null) {
+      final file = File(fn);
+      await file.writeAsBytes(data);
+    }
+  }
 }
 // #endregion
 
@@ -340,13 +376,17 @@ String decimalFormat(double x, int decimalDigits, {String symbol = ''}) {
 }
 // #endregion
 
-ColorPalette getPalette(Color color, int n) => ColorPalette.polyad(
-      color,
-      numberOfColors: max(n, 1),
-      hueVariability: 15,
-      saturationVariability: 10,
-      brightnessVariability: 10,
-    );
+List<Color> getPalette(Color baseColor, int count) {
+  assert(count >= 1, 'Polyad must contain at least one color');
+
+  final hsl = HSLColor.fromColor(baseColor);
+  final step = 360 / count;
+
+  return List.generate(count, (i) {
+    final newHue = (hsl.hue + step * i) % 360;
+    return hsl.withHue(newHue).toColor();
+  });
+}
 
 class PoolBitSet {
   static Set<int> toSet(int pools) {

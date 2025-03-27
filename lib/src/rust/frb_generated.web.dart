@@ -56,6 +56,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Fee dco_decode_box_autoadd_fee(dynamic raw);
 
   @protected
+  KeyType dco_decode_box_autoadd_key_type(dynamic raw);
+
+  @protected
   ParsedMemo dco_decode_box_autoadd_parsed_memo(dynamic raw);
 
   @protected
@@ -71,7 +74,13 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Quote dco_decode_box_autoadd_quote(dynamic raw);
 
   @protected
+  RaptorQResult dco_decode_box_autoadd_raptor_q_result(dynamic raw);
+
+  @protected
   Recipient dco_decode_box_autoadd_recipient(dynamic raw);
+
+  @protected
+  SeedInfo dco_decode_box_autoadd_seed_info(dynamic raw);
 
   @protected
   SendContext dco_decode_box_autoadd_send_context(dynamic raw);
@@ -84,6 +93,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   SwapAmount dco_decode_box_autoadd_swap_amount(dynamic raw);
+
+  @protected
+  SwapQuote dco_decode_box_autoadd_swap_quote(dynamic raw);
+
+  @protected
+  SwapRequest dco_decode_box_autoadd_swap_request(dynamic raw);
 
   @protected
   TxMemo dco_decode_box_autoadd_tx_memo(dynamic raw);
@@ -113,6 +128,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   PlatformInt64 dco_decode_i_64(dynamic raw);
 
   @protected
+  KeyType dco_decode_key_type(dynamic raw);
+
+  @protected
   List<String> dco_decode_list_String(dynamic raw);
 
   @protected
@@ -140,6 +158,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   String? dco_decode_opt_String(dynamic raw);
 
   @protected
+  RaptorQResult? dco_decode_opt_box_autoadd_raptor_q_result(dynamic raw);
+
+  @protected
   int? dco_decode_opt_box_autoadd_u_32(dynamic raw);
 
   @protected
@@ -158,7 +179,13 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Quote dco_decode_quote(dynamic raw);
 
   @protected
+  RaptorQResult dco_decode_raptor_q_result(dynamic raw);
+
+  @protected
   Recipient dco_decode_recipient(dynamic raw);
+
+  @protected
+  SeedInfo dco_decode_seed_info(dynamic raw);
 
   @protected
   SendContext dco_decode_send_context(dynamic raw);
@@ -171,6 +198,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   SwapAmount dco_decode_swap_amount(dynamic raw);
+
+  @protected
+  SwapQuote dco_decode_swap_quote(dynamic raw);
+
+  @protected
+  SwapRequest dco_decode_swap_request(dynamic raw);
 
   @protected
   TxMemo dco_decode_tx_memo(dynamic raw);
@@ -229,6 +262,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Fee sse_decode_box_autoadd_fee(SseDeserializer deserializer);
 
   @protected
+  KeyType sse_decode_box_autoadd_key_type(SseDeserializer deserializer);
+
+  @protected
   ParsedMemo sse_decode_box_autoadd_parsed_memo(SseDeserializer deserializer);
 
   @protected
@@ -244,7 +280,14 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Quote sse_decode_box_autoadd_quote(SseDeserializer deserializer);
 
   @protected
+  RaptorQResult sse_decode_box_autoadd_raptor_q_result(
+      SseDeserializer deserializer);
+
+  @protected
   Recipient sse_decode_box_autoadd_recipient(SseDeserializer deserializer);
+
+  @protected
+  SeedInfo sse_decode_box_autoadd_seed_info(SseDeserializer deserializer);
 
   @protected
   SendContext sse_decode_box_autoadd_send_context(SseDeserializer deserializer);
@@ -258,6 +301,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   SwapAmount sse_decode_box_autoadd_swap_amount(SseDeserializer deserializer);
+
+  @protected
+  SwapQuote sse_decode_box_autoadd_swap_quote(SseDeserializer deserializer);
+
+  @protected
+  SwapRequest sse_decode_box_autoadd_swap_request(SseDeserializer deserializer);
 
   @protected
   TxMemo sse_decode_box_autoadd_tx_memo(SseDeserializer deserializer);
@@ -288,6 +337,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer);
 
   @protected
+  KeyType sse_decode_key_type(SseDeserializer deserializer);
+
+  @protected
   List<String> sse_decode_list_String(SseDeserializer deserializer);
 
   @protected
@@ -315,6 +367,10 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   String? sse_decode_opt_String(SseDeserializer deserializer);
 
   @protected
+  RaptorQResult? sse_decode_opt_box_autoadd_raptor_q_result(
+      SseDeserializer deserializer);
+
+  @protected
   int? sse_decode_opt_box_autoadd_u_32(SseDeserializer deserializer);
 
   @protected
@@ -333,7 +389,13 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Quote sse_decode_quote(SseDeserializer deserializer);
 
   @protected
+  RaptorQResult sse_decode_raptor_q_result(SseDeserializer deserializer);
+
+  @protected
   Recipient sse_decode_recipient(SseDeserializer deserializer);
+
+  @protected
+  SeedInfo sse_decode_seed_info(SseDeserializer deserializer);
 
   @protected
   SendContext sse_decode_send_context(SseDeserializer deserializer);
@@ -346,6 +408,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   SwapAmount sse_decode_swap_amount(SseDeserializer deserializer);
+
+  @protected
+  SwapQuote sse_decode_swap_quote(SseDeserializer deserializer);
+
+  @protected
+  SwapRequest sse_decode_swap_request(SseDeserializer deserializer);
 
   @protected
   TxMemo sse_decode_tx_memo(SseDeserializer deserializer);
@@ -408,6 +476,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_box_autoadd_fee(Fee self, SseSerializer serializer);
 
   @protected
+  void sse_encode_box_autoadd_key_type(KeyType self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_parsed_memo(
       ParsedMemo self, SseSerializer serializer);
 
@@ -426,8 +497,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_box_autoadd_quote(Quote self, SseSerializer serializer);
 
   @protected
+  void sse_encode_box_autoadd_raptor_q_result(
+      RaptorQResult self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_recipient(
       Recipient self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_seed_info(
+      SeedInfo self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_send_context(
@@ -443,6 +522,14 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   void sse_encode_box_autoadd_swap_amount(
       SwapAmount self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_swap_quote(
+      SwapQuote self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_swap_request(
+      SwapRequest self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_tx_memo(TxMemo self, SseSerializer serializer);
@@ -471,6 +558,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_key_type(KeyType self, SseSerializer serializer);
 
   @protected
   void sse_encode_list_String(List<String> self, SseSerializer serializer);
@@ -502,6 +592,10 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_opt_String(String? self, SseSerializer serializer);
 
   @protected
+  void sse_encode_opt_box_autoadd_raptor_q_result(
+      RaptorQResult? self, SseSerializer serializer);
+
+  @protected
   void sse_encode_opt_box_autoadd_u_32(int? self, SseSerializer serializer);
 
   @protected
@@ -520,7 +614,13 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_quote(Quote self, SseSerializer serializer);
 
   @protected
+  void sse_encode_raptor_q_result(RaptorQResult self, SseSerializer serializer);
+
+  @protected
   void sse_encode_recipient(Recipient self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_seed_info(SeedInfo self, SseSerializer serializer);
 
   @protected
   void sse_encode_send_context(SendContext self, SseSerializer serializer);
@@ -533,6 +633,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_swap_amount(SwapAmount self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_swap_quote(SwapQuote self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_swap_request(SwapRequest self, SseSerializer serializer);
 
   @protected
   void sse_encode_tx_memo(TxMemo self, SseSerializer serializer);

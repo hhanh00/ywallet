@@ -9,6 +9,9 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 import '../generated/intl/messages.dart';
+import '../main.dart';
+import '../src/rust/api/warp.dart';
+import '../utils.dart';
 
 class ScanQRCodePage extends StatefulWidget {
   final bool Function(String code) onCode;
@@ -82,7 +85,7 @@ class _ScanQRCodeState extends State<ScanQRCodePage> {
     if (file != null) {
       final path = file.files[0].path!;
       final c = MobileScannerController();
-      c.analyzeImage(path);
+      await c.analyzeImage(path);
       ss = c.barcodes.listen(_onScan);
     }
   }
@@ -119,23 +122,24 @@ class _MultiQRReaderState extends State<MultiQRReader> {
     );
   }
 
-  _onScan(BarcodeCapture capture) {
+  _onScan(BarcodeCapture capture) async {
     final List<Barcode> barcodes = capture.barcodes;
     for (final barcode in barcodes) {
       final text = barcode.rawValue;
       if (text == null) return;
       if (!fragments.contains(text)) {
         fragments.add(text);
-        final res = WarpApi.mergeData(text);
-        if (res.data?.isEmpty != false) {
-          logger.d('${res.progress} ${res.total}');
-          setState(() {
-            value = res.progress / res.total;
-          });
-        } else {
-          final decoded =
-              utf8.decode(ZLibCodec().decode(base64Decode(res.data!)));
-          widget.onChanged?.call(decoded);
+        final res = await mergeData(drop: base64Decode(text));
+        if (res != null) {
+          if (res.data.isNotEmpty) {
+            final decoded = utf8.decode(ZLibCodec().decode(res.data));
+            widget.onChanged?.call(decoded);
+          } else {
+            logger.d('${res.progress} ${res.total}');
+            setState(() {
+              value = res.progress / res.total;
+            });
+          }
         }
       }
     }

@@ -124,3 +124,63 @@ pub struct SwapAmount {
     pub amount: String,
     pub currency: String,
 }
+
+#[frb(dart_metadata=("freezed"))]
+pub struct SwapQuote {
+    pub estimated_amount: String,
+    pub rate_id: String,
+    pub valid_until: String,
+}
+
+#[frb(dart_metadata=("freezed"))]
+pub struct SwapRequest {
+    pub fixed: bool,
+    pub rate_id: String,
+    pub currency_from: String,
+    pub currency_to: String,
+    pub amount_from: f64,
+    pub address_to: String,
+}
+
+#[frb(dart_metadata=("freezed"))]
+pub struct SwapLeg {
+    pub symbol: String,
+    pub name: String,
+    pub image: String,
+    pub validation_address: String,
+    pub address_explorer: String,
+    pub tx_explorer: String,
+}
+
+#[frb(dart_metadata=("freezed"))]
+pub struct SwapResponse {
+    pub id: String,
+    pub timestamp: String,
+    pub currency_from: String,
+    pub currency_to: String,
+    pub amount_from: String,
+    pub amount_to: String,
+    pub address_from: String,
+    pub address_to: String,
+}
+
+#[frb(dart_metadata=("freezed"))]
+#[derive(Default)]
+pub struct KeyType {
+    pub pools: u8,
+    pub secret: bool,
+    pub diversified: bool,
+}
+
+#[frb(dart_metadata=("freezed"))]
+pub struct RaptorQResult {
+    pub progress: u8,
+    pub total: u8,
+    pub data: Vec<u8>,
+}
+
+#[frb(dart_metadata=("freezed"))]
+pub struct SeedInfo {
+    pub seed: String,
+    pub index: u32,
+}

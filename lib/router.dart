@@ -51,6 +51,7 @@ import 'generated/intl/messages.dart';
 // import 'pages/messages.dart';
 
 import 'pages/about.dart';
+import 'pages/accounts/new_import.dart';
 import 'pages/splash.dart';
 import 'utils.dart';
 import 'vote/delegate.dart';
@@ -337,10 +338,10 @@ final router = GoRouter(
       path: '/welcome',
       builder: (context, state) => WelcomePage(),
     ),
-    // GoRoute(
-    //   path: '/first_account',
-    //   builder: (context, state) => NewImportAccountPage(first: true),
-    // ),
+    GoRoute(
+      path: '/first_account',
+      builder: (context, state) => const NewImportAccountPage(first: true),
+    ),
     // GoRoute(
     //   path: '/settings',
     //   parentNavigatorKey: rootNavigatorKey,

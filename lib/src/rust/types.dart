@@ -56,6 +56,15 @@ class Fee with _$Fee {
 }
 
 @freezed
+class KeyType with _$KeyType {
+  const factory KeyType({
+    required int pools,
+    required bool secret,
+    required bool diversified,
+  }) = _KeyType;
+}
+
+@freezed
 class ParsedMemo with _$ParsedMemo {
   const factory ParsedMemo({
     required bool reply,
@@ -101,6 +110,15 @@ class Quote with _$Quote {
 }
 
 @freezed
+class RaptorQResult with _$RaptorQResult {
+  const factory RaptorQResult({
+    required int progress,
+    required int total,
+    required Uint8List data,
+  }) = _RaptorQResult;
+}
+
+@freezed
 class Recipient with _$Recipient {
   const factory Recipient({
     required String address,
@@ -108,6 +126,14 @@ class Recipient with _$Recipient {
     required BigInt amount,
     required ParsedMemo message,
   }) = _Recipient;
+}
+
+@freezed
+class SeedInfo with _$SeedInfo {
+  const factory SeedInfo({
+    required String seed,
+    required int index,
+  }) = _SeedInfo;
 }
 
 @freezed
@@ -148,6 +174,27 @@ class SwapAmount with _$SwapAmount {
     required String amount,
     required String currency,
   }) = _SwapAmount;
+}
+
+@freezed
+class SwapQuote with _$SwapQuote {
+  const factory SwapQuote({
+    required String estimatedAmount,
+    required String rateId,
+    required String validUntil,
+  }) = _SwapQuote;
+}
+
+@freezed
+class SwapRequest with _$SwapRequest {
+  const factory SwapRequest({
+    required bool fixed,
+    required String rateId,
+    required String currencyFrom,
+    required String currencyTo,
+    required double amountFrom,
+    required String addressTo,
+  }) = _SwapRequest;
 }
 
 @freezed

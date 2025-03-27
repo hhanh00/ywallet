@@ -93,3 +93,37 @@ void updateLwd({required int coin, required String url}) =>
 
 List<String> splitData({required int id, required List<int> data}) =>
     RustLib.instance.api.crateApiWarpSplitData(id: id, data: data);
+
+KeyType getKeyType({required String key}) =>
+    RustLib.instance.api.crateApiWarpGetKeyType(key: key);
+
+Future<RaptorQResult?> mergeData({required List<int> drop}) =>
+    RustLib.instance.api.crateApiWarpMergeData(drop: drop);
+
+int? newAccount(
+        {required int coin,
+        required String name,
+        required String key,
+        required int index}) =>
+    RustLib.instance.api
+        .crateApiWarpNewAccount(coin: coin, name: name, key: key, index: index);
+
+int countAccounts({required int coin}) =>
+    RustLib.instance.api.crateApiWarpCountAccounts(coin: coin);
+
+Future<void> skipToLastHeight({required int coin}) =>
+    RustLib.instance.api.crateApiWarpSkipToLastHeight(coin: coin);
+
+int getAvailableAddrs({required int coin, required int id}) =>
+    RustLib.instance.api.crateApiWarpGetAvailableAddrs(coin: coin, id: id);
+
+String getAddress({required int coin, required int id, required int ua}) =>
+    RustLib.instance.api.crateApiWarpGetAddress(coin: coin, id: id, ua: ua);
+
+String makePaymentUri(
+        {required int coin,
+        required String address,
+        required BigInt amount,
+        required String memo}) =>
+    RustLib.instance.api.crateApiWarpMakePaymentUri(
+        coin: coin, address: address, amount: amount, memo: memo);

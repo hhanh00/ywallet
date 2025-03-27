@@ -6,7 +6,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_palette/flutter_palette.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -140,7 +139,7 @@ class MosaicWidget extends StatelessWidget {
           return ListTile(
             leading: SizedBox(width: 40, child: button.icon),
             title: Text(button.text, style: t.textTheme.headlineSmall),
-            tileColor: palette.colors[index].toColor(),
+            tileColor: palette[index],
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _onMenu(context, button),
           );

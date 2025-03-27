@@ -1,7 +1,14 @@
 use anyhow::Result;
 use flutter_rust_bridge::frb;
+use warp_api_ffi::RaptorQDrops;
 
-use crate::{frb_generated::StreamSink, types::{BlockHeight, Contact, PaymentURI, PoolBalance, Progress, Spending, TxTimeValue}};
+use crate::{
+    frb_generated::StreamSink,
+    types::{
+        BlockHeight, Contact, KeyType, PaymentURI, PoolBalance, Progress, RaptorQResult, Spending,
+        TxTimeValue,
+    },
+};
 
 #[frb(sync)]
 pub fn check_account(coin: u8, id: u8) -> bool {
@@ -15,7 +22,11 @@ pub fn get_first_account(coin: u8) -> u8 {
 
 #[frb(sync)]
 pub fn get_pool_balances(coin: u8, id: u32, confs: u32, unconfirmed: bool) -> PoolBalance {
-    PoolBalance { transparent: 0, sapling: 0, orchard: 0 }
+    PoolBalance {
+        transparent: 0,
+        sapling: 0,
+        orchard: 0,
+    }
 }
 
 #[frb(sync)]
@@ -49,7 +60,7 @@ pub fn warp_sync(
     inc_txs: bool,
     confs: u32,
     max_actions: u32,
-    progress: StreamSink<Progress>
+    progress: StreamSink<Progress>,
 ) -> Result<()> {
     Ok(())
 }
@@ -93,4 +104,40 @@ pub fn update_lwd(coin: u8, url: &str) {}
 #[frb(sync)]
 pub fn split_data(id: u32, data: &[u8]) -> Vec<String> {
     vec![]
+}
+
+#[frb(sync)]
+pub fn get_key_type(key: &str) -> KeyType {
+    KeyType::default()
+}
+
+pub fn merge_data(drop: &[u8]) -> Option<RaptorQResult> {
+    None
+}
+
+#[frb(sync)]
+pub fn new_account(coin: u8, name: &str, key: &str, index: u32) -> Option<u32> {
+    todo!()
+}
+
+#[frb(sync)]
+pub fn count_accounts(coin: u8) -> u32 {
+    0
+}
+
+pub fn skip_to_last_height(coin: u8) {}
+
+#[frb(sync)]
+pub fn get_available_addrs(coin: u8, id: u8) -> u8 {
+    0
+}
+
+#[frb(sync)]
+pub fn get_address(coin: u8, id: u8, ua: u8) -> String {
+    String::new()
+}
+
+#[frb(sync)]
+pub fn make_payment_uri(coin: u8, address: &str, amount: u64, memo: &str) -> String {
+    String::new()
 }

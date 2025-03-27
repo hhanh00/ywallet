@@ -430,4 +430,9 @@ pub fn dummy(
     _a13: &Recipient,
     _a14: &Amount,
     _a15: &SwapAmount,
+    _a16: &KeyType,
+    _a17: &RaptorQResult,
+    _a18: &SeedInfo,
+    _a19: &SwapQuote,
+    _a20: &SwapRequest,
 ) {}
