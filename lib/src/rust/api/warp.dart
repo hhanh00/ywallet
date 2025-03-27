@@ -90,3 +90,6 @@ String? getProperty({required int coin, required String name}) =>
 
 void updateLwd({required int coin, required String url}) =>
     RustLib.instance.api.crateApiWarpUpdateLwd(coin: coin, url: url);
+
+List<String> splitData({required int id, required List<int> data}) =>
+    RustLib.instance.api.crateApiWarpSplitData(id: id, data: data);

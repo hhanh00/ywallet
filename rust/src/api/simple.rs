@@ -427,4 +427,7 @@ pub fn dummy(
     _a10: &ParsedMemo,
     _a11: &SendContext,
     _a12: &PaymentURI,
+    _a13: &Recipient,
+    _a14: &Amount,
+    _a15: &SwapAmount,
 ) {}

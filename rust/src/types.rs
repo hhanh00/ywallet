@@ -82,22 +82,45 @@ pub struct ShieldedNote {
     pub spent: bool,
 }
 
+#[frb(dart_metadata=("freezed"))]
 pub struct ParsedMemo {
     pub reply: bool,
     pub subject: String,
     pub memo: String,
 }
 
+#[frb(dart_metadata=("freezed"))]
 pub struct PaymentURI {
     pub address: String,
     pub amount: u64,
     pub memo: String,
 }
 
+#[frb(dart_metadata=("freezed"))]
 pub struct SendContext {
     pub address: String,
     pub pools: u8,
     pub amount: u64,
     pub receiver_fee: bool,
     pub memo: ParsedMemo,
+}
+
+#[frb(dart_metadata=("freezed"))]
+pub struct Recipient {
+    pub address: String,
+    pub pools: u8,
+    pub amount: u64,
+    pub message: ParsedMemo,
+}
+
+#[frb(dart_metadata=("freezed"))]
+pub struct Amount {
+    pub value: u64,
+    pub deduct_fee: bool,
+}
+
+#[frb(dart_metadata=("freezed"))]
+pub struct SwapAmount {
+    pub amount: String,
+    pub currency: String,
 }

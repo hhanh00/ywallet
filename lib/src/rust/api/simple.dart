@@ -56,7 +56,10 @@ void dummy(
         required ShieldedNote a9,
         required ParsedMemo a10,
         required SendContext a11,
-        required PaymentURI a12}) =>
+        required PaymentURI a12,
+        required Recipient a13,
+        required Amount a14,
+        required SwapAmount a15}) =>
     RustLib.instance.api.crateApiSimpleDummy(
         a1: a1,
         a2: a2,
@@ -69,7 +72,10 @@ void dummy(
         a9: a9,
         a10: a10,
         a11: a11,
-        a12: a12);
+        a12: a12,
+        a13: a13,
+        a14: a14,
+        a15: a15);
 
 @freezed
 class Choice with _$Choice {

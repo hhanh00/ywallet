@@ -5,6 +5,7 @@ import 'package:showcaseview/showcaseview.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:zwallet/pages/welcome.dart';
 
 import 'accounts.dart';
 import 'coin/coins.dart';
@@ -49,6 +50,7 @@ import 'generated/intl/messages.dart';
 // import 'pages/settings.dart';
 // import 'pages/messages.dart';
 
+import 'pages/about.dart';
 import 'pages/splash.dart';
 import 'utils.dart';
 import 'vote/delegate.dart';
@@ -318,7 +320,7 @@ final router = GoRouter(
       ],
     ),
     // GoRoute(path: '/decrypt_db', builder: (context, state) => DbLoginPage()),
-    // GoRoute(path: '/disclaimer', builder: (context, state) => DisclaimerPage()),
+    GoRoute(path: '/disclaimer', builder: (context, state) => DisclaimerPage()),
     GoRoute(
       path: '/splash',
       builder: (context, state) => SplashPage(),
@@ -331,10 +333,10 @@ final router = GoRouter(
         return '/decrypt_db';
       },
     ),
-    // GoRoute(
-    //   path: '/welcome',
-    //   builder: (context, state) => WelcomePage(),
-    // ),
+    GoRoute(
+      path: '/welcome',
+      builder: (context, state) => WelcomePage(),
+    ),
     // GoRoute(
     //   path: '/first_account',
     //   builder: (context, state) => NewImportAccountPage(first: true),

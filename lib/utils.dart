@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:decimal/decimal.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:key_guardmanager/key_guardmanager.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:path/path.dart' as p;
@@ -14,12 +16,14 @@ import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+import 'package:zwallet/settings.pb.dart' show CoinSettings;
 import 'package:zwallet/src/rust/api/warp.dart';
+import 'package:flutter_palette/flutter_palette.dart';
 
+import 'appsettings.dart';
 import 'coin/coin.dart';
 import 'generated/intl/messages.dart';
 import 'main.dart';
-import 'settings.pb.dart';
 import 'src/rust/types.dart';
 import 'store.dart';
 
@@ -48,7 +52,7 @@ class LoadingWrapper extends StatelessWidget {
   final bool loading;
   final Widget child;
 
-  LoadingWrapper(this.loading, {super.key, required this.child});
+  const LoadingWrapper(this.loading, {super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +66,7 @@ class LoadingWrapper extends StatelessWidget {
             width: size.width,
             color: t.colorScheme.surface),
         Opacity(opacity: 0.4, child: child),
-        Container(
+        SizedBox(
           height: size.height - 200,
           child: Align(
               alignment: Alignment.center,
@@ -84,7 +88,7 @@ Future<bool> showMessageBox2(BuildContext context, String title, String content,
             if (dismissable)
               ElevatedButton.icon(
                   onPressed: () => GoRouter.of(context).pop(),
-                  icon: Icon(Icons.check),
+                  icon: const Icon(Icons.check),
                   label: Text(label ?? "OK"))
           ]));
   return confirm ?? false;
@@ -301,9 +305,55 @@ void handleAccel(AccelerometerEvent event) {
 SendContext? uriToSendContext(int coin, String puri) {
   final p = decodePaymentUri(coin: coin, uri: puri);
   return SendContext(
-      address: p.address, 
-      pools: 7, 
-      amount: p.amount, 
+      address: p.address,
+      pools: 7,
+      amount: p.amount,
       receiverFee: false,
       memo: ParsedMemo(reply: false, subject: "", memo: p.memo));
+}
+
+// #region parse/serialize zats
+BigInt stringToAmount(String? s) {
+  final v = parseNumber(s);
+  return (ZECUNIT_DECIMAL * v).toBigInt();
+}
+
+String amountToString(BigInt amount, {int? digits}) {
+  final dd = digits ?? decimalDigits(appSettings.fullPrec);
+  return decimalFormat(amount.toDouble() / zatsPerZec, dd);
+}
+
+Decimal parseNumber(String? sn) {
+  if (sn == null || sn.isEmpty) return Decimal.zero;
+  // There is no API to parse directly from intl string
+  final v = NumberFormat.currency(locale: Platform.localeName).parse(sn);
+  return Decimal.parse(v.toStringAsFixed(8));
+}
+
+int decimalDigits(bool fullPrec) => fullPrec ? 8 : 3;
+String decimalFormat(double x, int decimalDigits, {String symbol = ''}) {
+  return NumberFormat.currency(
+    locale: Platform.localeName,
+    decimalDigits: decimalDigits,
+    symbol: symbol,
+  ).format(x).trimRight();
+}
+// #endregion
+
+ColorPalette getPalette(Color color, int n) => ColorPalette.polyad(
+      color,
+      numberOfColors: max(n, 1),
+      hueVariability: 15,
+      saturationVariability: 10,
+      brightnessVariability: 10,
+    );
+
+class PoolBitSet {
+  static Set<int> toSet(int pools) {
+    return List.generate(3, (index) => pools & (1 << index) != 0 ? index : null)
+        .whereType<int>()
+        .toSet();
+  }
+
+  static int fromSet(Set<int> poolSet) => poolSet.map((p) => 1 << p).fold(0, (a, b) => a | b);
 }
