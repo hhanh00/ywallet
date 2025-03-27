@@ -31,7 +31,7 @@ class Note extends HasHeight {
         selected);
   }
   factory Note.fromShieldedNote(ShieldedNote n) => Note(n.id, n.height, 0,
-      toDateTime(n.timestamp), n.value.toDouble() / ZECUNIT, n.orchard, n.excluded, false);
+      toDateTime(n.timestamp), n.value.toDouble() / zatsPerZec, n.orchard, n.excluded, false);
 
   Note(this.id, this.height, this.confirmations, this.timestamp, this.value,
       this.orchard, this.excluded, this.selected);

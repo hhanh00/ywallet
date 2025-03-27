@@ -424,4 +424,7 @@ pub fn dummy(
     _a7: &Contact,
     _a8: &TxMemo,
     _a9: &ShieldedNote,
+    _a10: &ParsedMemo,
+    _a11: &SendContext,
+    _a12: &PaymentURI,
 ) {}

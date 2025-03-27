@@ -65,13 +65,20 @@ dependencies:
   window_manager: ^0.3.0
   flex_color_scheme: ^7.3.1
   intl: ^0.19.0
-  url_launcher: ^6.3.1
 
   mobx_codegen: ^2.0.3
   json_serializable: ^6.1.5
   protobuf: ^2.0.0
   reflectable: ^4.0.5
   tuple: ^2.0.1
+
+  url_launcher: ^6.3.1
+  quick_actions: ^0.6.0
+  workmanager: ^0.5.2
+  app_links: ^3.5.0
+  local_auth: ^2.1.2
+  key_guardmanager: ^1.0.0
+  sensors_plus: ^4.0.0
 
 dev_dependencies:
   flutter_test:

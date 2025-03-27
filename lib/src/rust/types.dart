@@ -23,6 +23,14 @@ class Backup with _$Backup {
 }
 
 @freezed
+class BlockHeight with _$BlockHeight {
+  const factory BlockHeight({
+    required int height,
+    required int timestamp,
+  }) = _BlockHeight;
+}
+
+@freezed
 class Contact with _$Contact {
   const factory Contact({
     required int id,
@@ -37,6 +45,54 @@ class Fee with _$Fee {
     required int scheme,
     required BigInt fee,
   }) = _Fee;
+}
+
+class ParsedMemo {
+  final bool reply;
+  final String subject;
+  final String memo;
+
+  const ParsedMemo({
+    required this.reply,
+    required this.subject,
+    required this.memo,
+  });
+
+  @override
+  int get hashCode => reply.hashCode ^ subject.hashCode ^ memo.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ParsedMemo &&
+          runtimeType == other.runtimeType &&
+          reply == other.reply &&
+          subject == other.subject &&
+          memo == other.memo;
+}
+
+class PaymentURI {
+  final String address;
+  final BigInt amount;
+  final String memo;
+
+  const PaymentURI({
+    required this.address,
+    required this.amount,
+    required this.memo,
+  });
+
+  @override
+  int get hashCode => address.hashCode ^ amount.hashCode ^ memo.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PaymentURI &&
+          runtimeType == other.runtimeType &&
+          address == other.address &&
+          amount == other.amount &&
+          memo == other.memo;
 }
 
 @freezed
@@ -64,6 +120,41 @@ class Quote with _$Quote {
     required int timestamp,
     required double price,
   }) = _Quote;
+}
+
+class SendContext {
+  final String address;
+  final int pools;
+  final BigInt amount;
+  final bool receiverFee;
+  final ParsedMemo memo;
+
+  const SendContext({
+    required this.address,
+    required this.pools,
+    required this.amount,
+    required this.receiverFee,
+    required this.memo,
+  });
+
+  @override
+  int get hashCode =>
+      address.hashCode ^
+      pools.hashCode ^
+      amount.hashCode ^
+      receiverFee.hashCode ^
+      memo.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SendContext &&
+          runtimeType == other.runtimeType &&
+          address == other.address &&
+          pools == other.pools &&
+          amount == other.amount &&
+          receiverFee == other.receiverFee &&
+          memo == other.memo;
 }
 
 @freezed

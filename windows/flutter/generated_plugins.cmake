@@ -3,8 +3,10 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  app_links
   awesome_notifications
   awesome_notifications_core
+  local_auth_windows
   screen_retriever
   share_plus
   url_launcher_windows

@@ -44,6 +44,12 @@ pub struct Fee {
 }
 
 #[frb(dart_metadata=("freezed"))]
+pub struct BlockHeight {
+    pub height: u32,
+    pub timestamp: u32,
+}
+
+#[frb(dart_metadata=("freezed"))]
 pub struct Progress {
     pub timestamp: u32,
     pub trial_decryptions: u32,
@@ -74,4 +80,24 @@ pub struct ShieldedNote {
     pub orchard: bool,
     pub excluded: bool,
     pub spent: bool,
+}
+
+pub struct ParsedMemo {
+    pub reply: bool,
+    pub subject: String,
+    pub memo: String,
+}
+
+pub struct PaymentURI {
+    pub address: String,
+    pub amount: u64,
+    pub memo: String,
+}
+
+pub struct SendContext {
+    pub address: String,
+    pub pools: u8,
+    pub amount: u64,
+    pub receiver_fee: bool,
+    pub memo: ParsedMemo,
 }

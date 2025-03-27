@@ -7,6 +7,7 @@ import 'package:mobx/mobx.dart';
 
 import 'appsettings.dart';
 import 'main.dart';
+import 'src/rust/api/warp.dart';
 import 'src/rust/types.dart';
 import 'types.dart';
 import 'utils.dart';
@@ -29,28 +30,13 @@ abstract class _AppStore with Store {
   bool flat = false;
 }
 
-final syncProgressPort2 = ReceivePort();
-final syncProgressStream = syncProgressPort2.asBroadcastStream();
-
-void initSyncListener() {
-  syncProgressStream.listen((e) {
-    // if (e is List<int>) { TODO
-    //   final progress = Progress(e);
-    //   syncStatus2.setProgress(progress);
-    //   final b = progress.balances?.unpack();
-    //   if (b != null) aa.poolBalances = b;
-    //   logger.d(progress.balances);
-    // }
-  });
-}
-
 Timer? syncTimer;
 
 Future<void> startAutoSync() async {
   if (syncTimer == null) {
     await syncStatus2.update();
     await syncStatus2.sync(false, auto: true);
-    syncTimer = Timer.periodic(Duration(seconds: 15), (timer) {
+    syncTimer = Timer.periodic(const Duration(seconds: 15), (timer) {
       syncStatus2.sync(false, auto: true);
       aa.updateDivisified();
     });
@@ -116,7 +102,7 @@ abstract class _SyncStatus2 with Store {
   @action
   void reset() {
     isRescan = false;
-    // syncedHeight = WarpApi.getDbHeight(aa.coin).height;
+    syncedHeight = getDbHeight(coin: aa.coin).height;
     syncing = false;
     paused = false;
   }
@@ -125,14 +111,14 @@ abstract class _SyncStatus2 with Store {
   Future<void> update() async {
     try {
       final lh = latestHeight;
-      // latestHeight = await WarpApi.getLatestHeight(aa.coin);
-      if (lh == null && latestHeight != null) aa.update(latestHeight);
+      latestHeight = await getLatestHeight(coin: aa.coin);
+      if (lh == null && latestHeight != null) await aa.update(latestHeight);
       connected = true;
     } on String catch (e) {
       logger.d(e);
       connected = false;
     }
-    // syncedHeight = WarpApi.getDbHeight(aa.coin).height;
+    syncedHeight = getDbHeight(coin: aa.coin).height;
   }
 
   @action
@@ -160,17 +146,19 @@ abstract class _SyncStatus2 with Store {
       final preBalance = AccountBalanceSnapshot(
           coin: aa.coin, id: aa.id, balance: aa.poolBalances.total.toInt());
       // This may take a long time
-      // await WarpApi.warpSync(
-      //     aa.coin,
-      //     aa.id,
-      //     !appSettings.nogetTx,
-      //     appSettings.anchorOffset,
-      //     coinSettings.spamFilter ? 50 : 1000000,
-      //     syncProgressPort2.sendPort.nativePort);
+      final syncProgress = warpSync(
+          coin: aa.coin,
+          id: aa.id,
+          incTxs: !appSettings.nogetTx,
+          confs: appSettings.anchorOffset,
+          maxActions: coinSettings.spamFilter ? 50 : 1000000); // TODO
+      syncProgress.listen((p) {
+        setProgress(p);
+      });
 
-      aa.update(latestHeight);
-      contacts.fetchContacts();
-      marketPrice.update();
+      await aa.update(latestHeight);
+      await contacts.fetchContacts();
+      await marketPrice.update();
       final postBalance = AccountBalanceSnapshot(
           coin: aa.coin, id: aa.id, balance: aa.poolBalances.total.toInt());
       if (preBalance.sameAccount(postBalance) &&
@@ -206,7 +194,7 @@ abstract class _SyncStatus2 with Store {
 
   @action
   Future<void> rescan(int height) async {
-    // WarpApi.rescanFrom(aa.coin, height);
+    rescanFrom(coin: aa.coin, height: height);
     _updateSyncedHeight();
     paused = false;
     await sync(true);
@@ -229,11 +217,11 @@ abstract class _SyncStatus2 with Store {
   }
 
   void _updateSyncedHeight() {
-    // final h = WarpApi.getDbHeight(aa.coin);
-    // syncedHeight = h.height;
-    // timestamp = (h.timestamp != 0)
-    //     ? DateTime.fromMillisecondsSinceEpoch(h.timestamp * 1000)
-    //     : null;
+    final h = getDbHeight(coin: aa.coin);
+    syncedHeight = h.height;
+    timestamp = (h.timestamp != 0)
+        ? DateTime.fromMillisecondsSinceEpoch(h.timestamp * 1000)
+        : null;
   }
 }
 
@@ -316,7 +304,7 @@ abstract class _MarketPrice with Store {
   @action
   Future<void> update() async {
     final c = coins[aa.coin];
-    // price = await getFxRate(c.currency, appSettings.currency);
+    price = await getFxRate(c.currency, appSettings.currency);
   }
 
   int? lastChartUpdateTime;
@@ -331,14 +319,14 @@ abstract class _ContactStore with Store {
   ObservableList<Contact> contacts = ObservableList<Contact>.of([]);
 
   @action
-  void fetchContacts() {
+  Future<void> fetchContacts() async {
     contacts.clear();
-    // contacts.addAll(WarpApi.getContacts(aa.coin));
+    contacts.addAll(await getContacts(coin: aa.coin));
   }
 
   @action
   void add(Contact c) {
-    // WarpApi.storeContact(c.id, c.name!, c.address!, true);
+    storeContact(coin: aa.coin, id: aa.id, contact: c, dirty: true);
     markContactsSaved(aa.coin, false);
     fetchContacts();
   }
@@ -346,7 +334,8 @@ abstract class _ContactStore with Store {
   @action
   void remove(Contact c) {
     contacts.removeWhere((contact) => contact.id == c.id);
-    // WarpApi.storeContact(c.id, c.name!, "", true);
+    final deleted = c.copyWith(name: "");
+    storeContact(coin: aa.coin, id: aa.id, contact: deleted, dirty: true);
     markContactsSaved(aa.coin, false);
     fetchContacts();
   }
