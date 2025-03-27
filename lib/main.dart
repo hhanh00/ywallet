@@ -15,8 +15,8 @@ import 'utils.dart';
 import 'init.dart';
 import 'vote/vote_data.dart';
 
-const APP_NAME = "YWallet";
-const ZECUNIT = 100000000.0;
+const appName = "YWallet";
+const zatsPerZec = 100000000.0;
 // ignore: non_constant_identifier_names
 var ZECUNIT_DECIMAL = Decimal.parse('100000000');
 const mZECUNIT = 100000;

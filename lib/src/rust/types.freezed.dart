@@ -274,6 +274,142 @@ abstract class _Backup implements Backup {
 }
 
 /// @nodoc
+mixin _$BlockHeight {
+  int get height => throw _privateConstructorUsedError;
+  int get timestamp => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $BlockHeightCopyWith<BlockHeight> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BlockHeightCopyWith<$Res> {
+  factory $BlockHeightCopyWith(
+          BlockHeight value, $Res Function(BlockHeight) then) =
+      _$BlockHeightCopyWithImpl<$Res, BlockHeight>;
+  @useResult
+  $Res call({int height, int timestamp});
+}
+
+/// @nodoc
+class _$BlockHeightCopyWithImpl<$Res, $Val extends BlockHeight>
+    implements $BlockHeightCopyWith<$Res> {
+  _$BlockHeightCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? height = null,
+    Object? timestamp = null,
+  }) {
+    return _then(_value.copyWith(
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BlockHeightImplCopyWith<$Res>
+    implements $BlockHeightCopyWith<$Res> {
+  factory _$$BlockHeightImplCopyWith(
+          _$BlockHeightImpl value, $Res Function(_$BlockHeightImpl) then) =
+      __$$BlockHeightImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int height, int timestamp});
+}
+
+/// @nodoc
+class __$$BlockHeightImplCopyWithImpl<$Res>
+    extends _$BlockHeightCopyWithImpl<$Res, _$BlockHeightImpl>
+    implements _$$BlockHeightImplCopyWith<$Res> {
+  __$$BlockHeightImplCopyWithImpl(
+      _$BlockHeightImpl _value, $Res Function(_$BlockHeightImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? height = null,
+    Object? timestamp = null,
+  }) {
+    return _then(_$BlockHeightImpl(
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$BlockHeightImpl implements _BlockHeight {
+  const _$BlockHeightImpl({required this.height, required this.timestamp});
+
+  @override
+  final int height;
+  @override
+  final int timestamp;
+
+  @override
+  String toString() {
+    return 'BlockHeight(height: $height, timestamp: $timestamp)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BlockHeightImpl &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, height, timestamp);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BlockHeightImplCopyWith<_$BlockHeightImpl> get copyWith =>
+      __$$BlockHeightImplCopyWithImpl<_$BlockHeightImpl>(this, _$identity);
+}
+
+abstract class _BlockHeight implements BlockHeight {
+  const factory _BlockHeight(
+      {required final int height,
+      required final int timestamp}) = _$BlockHeightImpl;
+
+  @override
+  int get height;
+  @override
+  int get timestamp;
+  @override
+  @JsonKey(ignore: true)
+  _$$BlockHeightImplCopyWith<_$BlockHeightImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$Contact {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;

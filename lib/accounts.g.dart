@@ -114,6 +114,14 @@ mixin _$ActiveAccount2 on _ActiveAccount2, Store {
     });
   }
 
+  late final _$updateAsyncAction =
+      AsyncAction('_ActiveAccount2.update', context: context);
+
+  @override
+  Future<void> update(int? newHeight) {
+    return _$updateAsyncAction.run(() => super.update(newHeight));
+  }
+
   late final _$_ActiveAccount2ActionController =
       ActionController(name: '_ActiveAccount2', context: context);
 
@@ -145,17 +153,6 @@ mixin _$ActiveAccount2 on _ActiveAccount2, Store {
         name: '_ActiveAccount2.updateDivisified');
     try {
       return super.updateDivisified();
-    } finally {
-      _$_ActiveAccount2ActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void update(int? newHeight) {
-    final _$actionInfo = _$_ActiveAccount2ActionController.startAction(
-        name: '_ActiveAccount2.update');
-    try {
-      return super.update(newHeight);
     } finally {
       _$_ActiveAccount2ActionController.endAction(_$actionInfo);
     }

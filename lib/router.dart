@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:showcaseview/showcaseview.dart';
 
-import 'settings.pb.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -50,7 +49,7 @@ import 'generated/intl/messages.dart';
 // import 'pages/settings.dart';
 // import 'pages/messages.dart';
 
-import 'store.dart';
+import 'pages/splash.dart';
 import 'utils.dart';
 import 'vote/delegate.dart';
 import 'vote/new.dart';
@@ -63,7 +62,7 @@ final _accountNavigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
   navigatorKey: rootNavigatorKey,
-  initialLocation: '/more/vote',
+  initialLocation: '/splash',
   debugLogDiagnostics: true,
   routes: [
     GoRoute(path: '/', redirect: (context, state) => '/account'),
@@ -320,18 +319,18 @@ final router = GoRouter(
     ),
     // GoRoute(path: '/decrypt_db', builder: (context, state) => DbLoginPage()),
     // GoRoute(path: '/disclaimer', builder: (context, state) => DisclaimerPage()),
-    // GoRoute(
-    //   path: '/splash',
-    //   builder: (context, state) => SplashPage(),
-    //   redirect: (context, state) {
-    //     final c = coins.first;
-    //     if (isMobile()) return null; // db encryption is only for desktop
-    //     if (!File(c.dbFullPath).existsSync()) return null; // fresh install
-    //     // if (WarpApi.decryptDb(c.dbFullPath, appStore.dbPassword)) TODO
-    //     //   return null; // not encrypted
-    //     return '/decrypt_db';
-    //   },
-    // ),
+    GoRoute(
+      path: '/splash',
+      builder: (context, state) => SplashPage(),
+      redirect: (context, state) {
+        final c = coins.first;
+        if (isMobile()) return null; // db encryption is only for desktop
+        if (!File(c.dbFullPath).existsSync()) return null; // fresh install
+        // if (WarpApi.decryptDb(c.dbFullPath, appStore.dbPassword)) TODO
+        //   return null; // not encrypted
+        return '/decrypt_db';
+      },
+    ),
     // GoRoute(
     //   path: '/welcome',
     //   builder: (context, state) => WelcomePage(),

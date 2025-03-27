@@ -24,6 +24,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   AnyhowException dco_decode_AnyhowException(dynamic raw);
 
   @protected
+  RustStreamSink<Progress> dco_decode_StreamSink_progress_Sse(dynamic raw);
+
+  @protected
   RustStreamSink<int> dco_decode_StreamSink_u_32_Sse(dynamic raw);
 
   @protected
@@ -31,6 +34,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   Backup dco_decode_backup(dynamic raw);
+
+  @protected
+  BlockHeight dco_decode_block_height(dynamic raw);
 
   @protected
   bool dco_decode_bool(dynamic raw);
@@ -42,6 +48,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Fee dco_decode_box_autoadd_fee(dynamic raw);
 
   @protected
+  ParsedMemo dco_decode_box_autoadd_parsed_memo(dynamic raw);
+
+  @protected
+  PaymentURI dco_decode_box_autoadd_payment_uri(dynamic raw);
+
+  @protected
   PoolBalance dco_decode_box_autoadd_pool_balance(dynamic raw);
 
   @protected
@@ -49,6 +61,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   Quote dco_decode_box_autoadd_quote(dynamic raw);
+
+  @protected
+  SendContext dco_decode_box_autoadd_send_context(dynamic raw);
 
   @protected
   ShieldedNote dco_decode_box_autoadd_shielded_note(dynamic raw);
@@ -87,7 +102,19 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   List<Choice> dco_decode_list_choice(dynamic raw);
 
   @protected
+  List<Contact> dco_decode_list_contact(dynamic raw);
+
+  @protected
+  List<int> dco_decode_list_prim_u_8_loose(dynamic raw);
+
+  @protected
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
+
+  @protected
+  List<Spending> dco_decode_list_spending(dynamic raw);
+
+  @protected
+  List<TxTimeValue> dco_decode_list_tx_time_value(dynamic raw);
 
   @protected
   List<Vote> dco_decode_list_vote(dynamic raw);
@@ -99,6 +126,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   int? dco_decode_opt_box_autoadd_u_32(dynamic raw);
 
   @protected
+  ParsedMemo dco_decode_parsed_memo(dynamic raw);
+
+  @protected
+  PaymentURI dco_decode_payment_uri(dynamic raw);
+
+  @protected
   PoolBalance dco_decode_pool_balance(dynamic raw);
 
   @protected
@@ -106,6 +139,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   Quote dco_decode_quote(dynamic raw);
+
+  @protected
+  SendContext dco_decode_send_context(dynamic raw);
 
   @protected
   ShieldedNote dco_decode_shielded_note(dynamic raw);
@@ -138,6 +174,10 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   AnyhowException sse_decode_AnyhowException(SseDeserializer deserializer);
 
   @protected
+  RustStreamSink<Progress> sse_decode_StreamSink_progress_Sse(
+      SseDeserializer deserializer);
+
+  @protected
   RustStreamSink<int> sse_decode_StreamSink_u_32_Sse(
       SseDeserializer deserializer);
 
@@ -146,6 +186,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   Backup sse_decode_backup(SseDeserializer deserializer);
+
+  @protected
+  BlockHeight sse_decode_block_height(SseDeserializer deserializer);
 
   @protected
   bool sse_decode_bool(SseDeserializer deserializer);
@@ -157,6 +200,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Fee sse_decode_box_autoadd_fee(SseDeserializer deserializer);
 
   @protected
+  ParsedMemo sse_decode_box_autoadd_parsed_memo(SseDeserializer deserializer);
+
+  @protected
+  PaymentURI sse_decode_box_autoadd_payment_uri(SseDeserializer deserializer);
+
+  @protected
   PoolBalance sse_decode_box_autoadd_pool_balance(SseDeserializer deserializer);
 
   @protected
@@ -164,6 +213,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   Quote sse_decode_box_autoadd_quote(SseDeserializer deserializer);
+
+  @protected
+  SendContext sse_decode_box_autoadd_send_context(SseDeserializer deserializer);
 
   @protected
   ShieldedNote sse_decode_box_autoadd_shielded_note(
@@ -204,7 +256,19 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   List<Choice> sse_decode_list_choice(SseDeserializer deserializer);
 
   @protected
+  List<Contact> sse_decode_list_contact(SseDeserializer deserializer);
+
+  @protected
+  List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer);
+
+  @protected
   Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
+
+  @protected
+  List<Spending> sse_decode_list_spending(SseDeserializer deserializer);
+
+  @protected
+  List<TxTimeValue> sse_decode_list_tx_time_value(SseDeserializer deserializer);
 
   @protected
   List<Vote> sse_decode_list_vote(SseDeserializer deserializer);
@@ -216,6 +280,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   int? sse_decode_opt_box_autoadd_u_32(SseDeserializer deserializer);
 
   @protected
+  ParsedMemo sse_decode_parsed_memo(SseDeserializer deserializer);
+
+  @protected
+  PaymentURI sse_decode_payment_uri(SseDeserializer deserializer);
+
+  @protected
   PoolBalance sse_decode_pool_balance(SseDeserializer deserializer);
 
   @protected
@@ -223,6 +293,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   Quote sse_decode_quote(SseDeserializer deserializer);
+
+  @protected
+  SendContext sse_decode_send_context(SseDeserializer deserializer);
 
   @protected
   ShieldedNote sse_decode_shielded_note(SseDeserializer deserializer);
@@ -259,6 +332,10 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       AnyhowException self, SseSerializer serializer);
 
   @protected
+  void sse_encode_StreamSink_progress_Sse(
+      RustStreamSink<Progress> self, SseSerializer serializer);
+
+  @protected
   void sse_encode_StreamSink_u_32_Sse(
       RustStreamSink<int> self, SseSerializer serializer);
 
@@ -267,6 +344,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_backup(Backup self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_block_height(BlockHeight self, SseSerializer serializer);
 
   @protected
   void sse_encode_bool(bool self, SseSerializer serializer);
@@ -278,6 +358,14 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_box_autoadd_fee(Fee self, SseSerializer serializer);
 
   @protected
+  void sse_encode_box_autoadd_parsed_memo(
+      ParsedMemo self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_payment_uri(
+      PaymentURI self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_pool_balance(
       PoolBalance self, SseSerializer serializer);
 
@@ -286,6 +374,10 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_box_autoadd_quote(Quote self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_send_context(
+      SendContext self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_shielded_note(
@@ -326,8 +418,21 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_list_choice(List<Choice> self, SseSerializer serializer);
 
   @protected
+  void sse_encode_list_contact(List<Contact> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_prim_u_8_loose(List<int> self, SseSerializer serializer);
+
+  @protected
   void sse_encode_list_prim_u_8_strict(
       Uint8List self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_spending(List<Spending> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_tx_time_value(
+      List<TxTimeValue> self, SseSerializer serializer);
 
   @protected
   void sse_encode_list_vote(List<Vote> self, SseSerializer serializer);
@@ -339,6 +444,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_opt_box_autoadd_u_32(int? self, SseSerializer serializer);
 
   @protected
+  void sse_encode_parsed_memo(ParsedMemo self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_payment_uri(PaymentURI self, SseSerializer serializer);
+
+  @protected
   void sse_encode_pool_balance(PoolBalance self, SseSerializer serializer);
 
   @protected
@@ -346,6 +457,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_quote(Quote self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_send_context(SendContext self, SseSerializer serializer);
 
   @protected
   void sse_encode_shielded_note(ShieldedNote self, SseSerializer serializer);

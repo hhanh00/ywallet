@@ -42,7 +42,7 @@ Future<void> restoreWindow() async {
     titleBarStyle:
         Platform.isMacOS ? TitleBarStyle.hidden : TitleBarStyle.normal,
   );
-  windowManager.waitUntilReadyToShow(windowOptions, () async {
+  await windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
     await windowManager.focus();
   });
@@ -54,8 +54,8 @@ class _OnWindow extends WindowListener {
   void onWindowResized() async {
     final s = await windowManager.getSize();
     final prefs = await SharedPreferences.getInstance();
-    prefs.setDouble('width', s.width);
-    prefs.setDouble('height', s.height);
+    await prefs.setDouble('width', s.width);
+    await prefs.setDouble('height', s.height);
   }
 
   @override
@@ -70,9 +70,9 @@ void initNotifications() {
       'resource://drawable/res_notification',
       [
         NotificationChannel(
-          channelKey: APP_NAME,
-          channelName: APP_NAME,
-          channelDescription: 'Notification channel for $APP_NAME',
+          channelKey: appName,
+          channelName: appName,
+          channelDescription: 'Notification channel for $appName',
           defaultColor: Color(0xFFB3F0FF),
           ledColor: Colors.white,
         )
@@ -103,7 +103,7 @@ class _AppState extends State<App> {
       );
       return MaterialApp.router(
         locale: Locale(appSettings.language),
-        title: APP_NAME,
+        title: appName,
         debugShowCheckedModeBanner: false,
         theme: theme,
         scaffoldMessengerKey: rootScaffoldMessengerKey,

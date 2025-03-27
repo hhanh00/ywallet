@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   awesome_notifications
   awesome_notifications_core
+  gtk
   screen_retriever
   url_launcher_linux
   window_manager

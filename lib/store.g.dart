@@ -375,19 +375,16 @@ mixin _$ContactStore on _ContactStore, Store {
     });
   }
 
-  late final _$_ContactStoreActionController =
-      ActionController(name: '_ContactStore', context: context);
+  late final _$fetchContactsAsyncAction =
+      AsyncAction('_ContactStore.fetchContacts', context: context);
 
   @override
-  void fetchContacts() {
-    final _$actionInfo = _$_ContactStoreActionController.startAction(
-        name: '_ContactStore.fetchContacts');
-    try {
-      return super.fetchContacts();
-    } finally {
-      _$_ContactStoreActionController.endAction(_$actionInfo);
-    }
+  Future<void> fetchContacts() {
+    return _$fetchContactsAsyncAction.run(() => super.fetchContacts());
   }
+
+  late final _$_ContactStoreActionController =
+      ActionController(name: '_ContactStore', context: context);
 
   @override
   void add(Contact c) {

@@ -1,11 +1,10 @@
-import 'dart:math';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tuple/tuple.dart';
 import 'appsettings.dart';
 import 'coin/coins.dart';
 import 'package:mobx/mobx.dart';
 
+import 'main.dart';
 import 'src/rust/api/simple.dart';
 import 'src/rust/api/warp.dart';
 import 'src/rust/types.dart';
@@ -47,7 +46,7 @@ class ActiveAccount2 extends _ActiveAccount2 with _$ActiveAccount2 {
   static ActiveAccount2? fromPrefs(SharedPreferences prefs) {
     final coin = prefs.getInt('coin') ?? 0;
     var id = prefs.getInt('account') ?? 0;
-    // if (WarpApi.checkAccount(coin, id)) return ActiveAccount2.fromId(coin, id); TODO
+    if (checkAccount(coin: coin, id: id)) return ActiveAccount2.fromId(coin, id);
     for (var c in coins) {
       final id = getFirstAccount(coin: c.coin);
       if (id > 0) return ActiveAccount2.fromId(c.coin, id);
@@ -119,21 +118,22 @@ abstract class _ActiveAccount2 with Store {
 
   @action
   void updatePoolBalances() {
-    // poolBalances = WarpApi.getPoolBalances(coin, id, 0, true).unpack(); TODO
+    poolBalances = getPoolBalances(coin: coin, id: id, confs: 0, 
+      unconfirmed: true);
   }
 
   @action
   void updateDivisified() {
     if (id == 0) return;
     try {
-      // diversifiedAddress = WarpApi.getDiversifiedAddress(coin, id,
-      //     coinSettings.uaType, DateTime.now().millisecondsSinceEpoch ~/ 1000);
-      // TODO
+      diversifiedAddress = getDiversifiedAddress(coin: coin, id: id,
+        mask: coinSettings.uaType, 
+        time: DateTime.now().millisecondsSinceEpoch ~/ 1000);
     } catch (e) {}
   }
 
   @action
-  void update(int? newHeight) {
+  Future<void> update(int? newHeight) async {
     if (id == 0) return;
     updateDivisified();
     updatePoolBalances();
@@ -147,35 +147,44 @@ abstract class _ActiveAccount2 with Store {
     final now = DateTime.now().toUtc();
     final today = DateTime.utc(now.year, now.month, now.day);
     final start =
-        today.add(Duration(days: -365)).millisecondsSinceEpoch ~/ 1000;
+        today.add(const Duration(days: -365)).millisecondsSinceEpoch ~/ 1000;
     final end = today.millisecondsSinceEpoch ~/ 1000;
-    // spendings = WarpApi.getSpendings(coin, id, start);
+    spendings = await getSpendings(coin: coin, id: id, start: start);
 
-    // final trades = WarpApi.getPnLTxs(coin, id, start);
-    // List<AccountBalance> abs = [];
-    // var b = poolBalances.orchard + poolBalances.sapling;
-    // abs.add(AccountBalance(DateTime.now(), b / ZECUNIT));
-    // for (var trade in trades) {
-    //   final timestamp =
-    //       DateTime.fromMillisecondsSinceEpoch(trade.timestamp * 1000);
-    //   final value = trade.value;
-    //   final ab = AccountBalance(timestamp, b / ZECUNIT);
-    //   abs.add(ab);
-    //   b -= value;
-    // }
-    // abs.add(AccountBalance(
-    //     DateTime.fromMillisecondsSinceEpoch(start * 1000), b / ZECUNIT));
-    // accountBalances = sampleDaily<AccountBalance, double, double>(
-    //     abs.reversed,
-    //     start,
-    //     end,
-    //     (AccountBalance ab) => ab.time.millisecondsSinceEpoch ~/ DAY_MS,
-    //     (AccountBalance ab) => ab.balance,
-    //     (acc, v) => v,
-    //     0.0);
+    final trades = await getPnlTxs(coin: coin, id: id, start: start);
+    List<AccountBalance> abs = [];
+    var b = poolBalances.total.toDouble();
+    abs.add(AccountBalance(DateTime.now(), b / zatsPerZec));
+    for (var trade in trades) {
+      final timestamp =
+          DateTime.fromMillisecondsSinceEpoch(trade.timestamp * 1000);
+      final value = trade.value;
+      final ab = AccountBalance(timestamp, b / zatsPerZec);
+      abs.add(ab);
+      b -= value;
+    }
+    abs.add(AccountBalance(
+        DateTime.fromMillisecondsSinceEpoch(start * 1000), b / zatsPerZec));
+    accountBalances = sampleDaily<AccountBalance, double, double>(
+        abs.reversed,
+        start,
+        end,
+        (AccountBalance ab) => ab.time.millisecondsSinceEpoch ~/ msecsPerDay,
+        (AccountBalance ab) => ab.balance,
+        (acc, v) => v,
+        0.0);
 
     if (newHeight != null) height = newHeight;
   }
+}
+
+class AccountBalance {
+  final DateTime time;
+  final double balance;
+
+  AccountBalance(this.time, this.balance);
+  @override
+  String toString() => "($time $balance)";
 }
 
 class Notes extends _Notes with _$Notes {
