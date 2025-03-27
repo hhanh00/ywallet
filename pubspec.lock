@@ -121,6 +121,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.3.1"
+  build_version:
+    dependency: "direct dev"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: e3765f680f2d5decf7a47960b4470b8f60905a5f
+      url: "https://github.com/hhanh00/build_version_git.git"
+    source: git
+    version: "2.1.4"
   built_collection:
     dependency: transitive
     description:
@@ -177,6 +186,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  color_models:
+    dependency: transitive
+    description:
+      name: color_models
+      sha256: "3683f0a461570161ca22b7d3e1765b2ce2bce3534db14e00d5ee458d0287abac"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.3"
   convert:
     dependency: transitive
     description:
@@ -286,6 +303,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_color_models:
+    dependency: transitive
+    description:
+      name: flutter_color_models
+      sha256: "8454198ba9a82e533452d0764f1df3d6c3ccc2b33e18eb1f2fedc7ae4a5c43be"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.3+2"
   flutter_driver:
     dependency: transitive
     description: flutter
@@ -312,6 +337,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_markdown:
+    dependency: "direct main"
+    description:
+      name: flutter_markdown
+      sha256: "04c4722cc36ec5af38acc38ece70d22d3c2123c61305d555750a091517bbe504"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.23"
   flutter_mobx:
     dependency: "direct main"
     description:
@@ -320,6 +353,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  flutter_palette:
+    dependency: "direct main"
+    description:
+      name: flutter_palette
+      sha256: "5c24503ac99cc5b5bebf7ed4450d79d52d0129e1442a786fb49b90cb2d272be2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0+1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -391,6 +432,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  git:
+    dependency: transitive
+    description:
+      name: git
+      sha256: de678c6f0d5e2761c2c3643d31b1010883cc4d3e352949ef7c15f98f27d676ea
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
   glob:
     dependency: transitive
     description:
@@ -532,6 +581,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  list_utilities:
+    dependency: transitive
+    description:
+      name: list_utilities
+      sha256: "2c9d341c8d59c4256ab092c2b6a4fb0df8e59cd47e0c9914a38433257d946c9b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   loading_animation_widget:
     dependency: "direct main"
     description:
@@ -596,6 +653,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.0"
+  markdown:
+    dependency: transitive
+    description:
+      name: markdown
+      sha256: "935e23e1ff3bc02d390bad4d4be001208ee92cc217cb5b5a6c19bc14aaa318c1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.3.0"
   matcher:
     dependency: transitive
     description:
@@ -628,6 +693,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  mobile_scanner:
+    dependency: "direct main"
+    description:
+      name: mobile_scanner
+      sha256: "827765afbd4792ff3fd105ad593821ac0f6d8a7d352689013b07ee85be336312"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.1"
   mobx:
     dependency: "direct main"
     description:
@@ -644,6 +717,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.7.0"
+  mustache_template:
+    dependency: "direct main"
+    description:
+      name: mustache_template
+      sha256: a46e26f91445bfb0b60519be280555b06792460b27b19e2b19ad5b9740df5d1c
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   nested:
     dependency: transitive
     description:
@@ -652,6 +733,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  num_utilities:
+    dependency: transitive
+    description:
+      name: num_utilities
+      sha256: "170695bcafd17a19ee3a060325e7e10fb35bb878c8bcb3e6f5691dde1462c0ae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
   package_config:
     dependency: transitive
     description:
@@ -660,6 +749,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  palette:
+    dependency: transitive
+    description:
+      name: palette
+      sha256: c338c1fb40163e8f3cdd261d634e7d7667447a3703643e08e9141884122e6d57
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0+1"
   path:
     dependency: "direct main"
     description:
@@ -740,6 +837,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
+  powers:
+    dependency: transitive
+    description:
+      name: powers
+      sha256: "389ba222d4264655ecd3ffa461921bc707a07e4597b98831d21dd516eed6f496"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+2"
   process:
     dependency: transitive
     description:
@@ -780,6 +885,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
+  qr:
+    dependency: transitive
+    description:
+      name: qr
+      sha256: "5a1d2586170e172b8a8c8470bbbffd5eb0cd38a66c0d77155ea138d3af3a4445"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.2"
+  qr_flutter:
+    dependency: "direct main"
+    description:
+      name: qr_flutter
+      sha256: "5095f0fc6e3f71d08adef8feccc8cea4f12eec18a2e31c2e8d82cb6019f4b097"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   quick_actions:
     dependency: "direct main"
     description:
@@ -1080,6 +1201,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
+  unique_list:
+    dependency: transitive
+    description:
+      name: unique_list
+      sha256: "96d03a2c2391761452f2881ff5eda28759e63f74625ab991d24e60944d772173"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   url_launcher:
     dependency: "direct main"
     description:

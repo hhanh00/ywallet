@@ -15,6 +15,139 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
+mixin _$Amount {
+  BigInt get value => throw _privateConstructorUsedError;
+  bool get deductFee => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AmountCopyWith<Amount> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AmountCopyWith<$Res> {
+  factory $AmountCopyWith(Amount value, $Res Function(Amount) then) =
+      _$AmountCopyWithImpl<$Res, Amount>;
+  @useResult
+  $Res call({BigInt value, bool deductFee});
+}
+
+/// @nodoc
+class _$AmountCopyWithImpl<$Res, $Val extends Amount>
+    implements $AmountCopyWith<$Res> {
+  _$AmountCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+    Object? deductFee = null,
+  }) {
+    return _then(_value.copyWith(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as BigInt,
+      deductFee: null == deductFee
+          ? _value.deductFee
+          : deductFee // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AmountImplCopyWith<$Res> implements $AmountCopyWith<$Res> {
+  factory _$$AmountImplCopyWith(
+          _$AmountImpl value, $Res Function(_$AmountImpl) then) =
+      __$$AmountImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({BigInt value, bool deductFee});
+}
+
+/// @nodoc
+class __$$AmountImplCopyWithImpl<$Res>
+    extends _$AmountCopyWithImpl<$Res, _$AmountImpl>
+    implements _$$AmountImplCopyWith<$Res> {
+  __$$AmountImplCopyWithImpl(
+      _$AmountImpl _value, $Res Function(_$AmountImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+    Object? deductFee = null,
+  }) {
+    return _then(_$AmountImpl(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as BigInt,
+      deductFee: null == deductFee
+          ? _value.deductFee
+          : deductFee // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AmountImpl implements _Amount {
+  const _$AmountImpl({required this.value, required this.deductFee});
+
+  @override
+  final BigInt value;
+  @override
+  final bool deductFee;
+
+  @override
+  String toString() {
+    return 'Amount(value: $value, deductFee: $deductFee)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AmountImpl &&
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.deductFee, deductFee) ||
+                other.deductFee == deductFee));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value, deductFee);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AmountImplCopyWith<_$AmountImpl> get copyWith =>
+      __$$AmountImplCopyWithImpl<_$AmountImpl>(this, _$identity);
+}
+
+abstract class _Amount implements Amount {
+  const factory _Amount(
+      {required final BigInt value,
+      required final bool deductFee}) = _$AmountImpl;
+
+  @override
+  BigInt get value;
+  @override
+  bool get deductFee;
+  @override
+  @JsonKey(ignore: true)
+  _$$AmountImplCopyWith<_$AmountImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$Backup {
   String get name => throw _privateConstructorUsedError;
   String? get seed => throw _privateConstructorUsedError;
@@ -687,6 +820,312 @@ abstract class _Fee implements Fee {
 }
 
 /// @nodoc
+mixin _$ParsedMemo {
+  bool get reply => throw _privateConstructorUsedError;
+  String get subject => throw _privateConstructorUsedError;
+  String get memo => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ParsedMemoCopyWith<ParsedMemo> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ParsedMemoCopyWith<$Res> {
+  factory $ParsedMemoCopyWith(
+          ParsedMemo value, $Res Function(ParsedMemo) then) =
+      _$ParsedMemoCopyWithImpl<$Res, ParsedMemo>;
+  @useResult
+  $Res call({bool reply, String subject, String memo});
+}
+
+/// @nodoc
+class _$ParsedMemoCopyWithImpl<$Res, $Val extends ParsedMemo>
+    implements $ParsedMemoCopyWith<$Res> {
+  _$ParsedMemoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reply = null,
+    Object? subject = null,
+    Object? memo = null,
+  }) {
+    return _then(_value.copyWith(
+      reply: null == reply
+          ? _value.reply
+          : reply // ignore: cast_nullable_to_non_nullable
+              as bool,
+      subject: null == subject
+          ? _value.subject
+          : subject // ignore: cast_nullable_to_non_nullable
+              as String,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ParsedMemoImplCopyWith<$Res>
+    implements $ParsedMemoCopyWith<$Res> {
+  factory _$$ParsedMemoImplCopyWith(
+          _$ParsedMemoImpl value, $Res Function(_$ParsedMemoImpl) then) =
+      __$$ParsedMemoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool reply, String subject, String memo});
+}
+
+/// @nodoc
+class __$$ParsedMemoImplCopyWithImpl<$Res>
+    extends _$ParsedMemoCopyWithImpl<$Res, _$ParsedMemoImpl>
+    implements _$$ParsedMemoImplCopyWith<$Res> {
+  __$$ParsedMemoImplCopyWithImpl(
+      _$ParsedMemoImpl _value, $Res Function(_$ParsedMemoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reply = null,
+    Object? subject = null,
+    Object? memo = null,
+  }) {
+    return _then(_$ParsedMemoImpl(
+      reply: null == reply
+          ? _value.reply
+          : reply // ignore: cast_nullable_to_non_nullable
+              as bool,
+      subject: null == subject
+          ? _value.subject
+          : subject // ignore: cast_nullable_to_non_nullable
+              as String,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ParsedMemoImpl implements _ParsedMemo {
+  const _$ParsedMemoImpl(
+      {required this.reply, required this.subject, required this.memo});
+
+  @override
+  final bool reply;
+  @override
+  final String subject;
+  @override
+  final String memo;
+
+  @override
+  String toString() {
+    return 'ParsedMemo(reply: $reply, subject: $subject, memo: $memo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ParsedMemoImpl &&
+            (identical(other.reply, reply) || other.reply == reply) &&
+            (identical(other.subject, subject) || other.subject == subject) &&
+            (identical(other.memo, memo) || other.memo == memo));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, reply, subject, memo);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ParsedMemoImplCopyWith<_$ParsedMemoImpl> get copyWith =>
+      __$$ParsedMemoImplCopyWithImpl<_$ParsedMemoImpl>(this, _$identity);
+}
+
+abstract class _ParsedMemo implements ParsedMemo {
+  const factory _ParsedMemo(
+      {required final bool reply,
+      required final String subject,
+      required final String memo}) = _$ParsedMemoImpl;
+
+  @override
+  bool get reply;
+  @override
+  String get subject;
+  @override
+  String get memo;
+  @override
+  @JsonKey(ignore: true)
+  _$$ParsedMemoImplCopyWith<_$ParsedMemoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$PaymentURI {
+  String get address => throw _privateConstructorUsedError;
+  BigInt get amount => throw _privateConstructorUsedError;
+  String get memo => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PaymentURICopyWith<PaymentURI> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PaymentURICopyWith<$Res> {
+  factory $PaymentURICopyWith(
+          PaymentURI value, $Res Function(PaymentURI) then) =
+      _$PaymentURICopyWithImpl<$Res, PaymentURI>;
+  @useResult
+  $Res call({String address, BigInt amount, String memo});
+}
+
+/// @nodoc
+class _$PaymentURICopyWithImpl<$Res, $Val extends PaymentURI>
+    implements $PaymentURICopyWith<$Res> {
+  _$PaymentURICopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? address = null,
+    Object? amount = null,
+    Object? memo = null,
+  }) {
+    return _then(_value.copyWith(
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as BigInt,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PaymentURIImplCopyWith<$Res>
+    implements $PaymentURICopyWith<$Res> {
+  factory _$$PaymentURIImplCopyWith(
+          _$PaymentURIImpl value, $Res Function(_$PaymentURIImpl) then) =
+      __$$PaymentURIImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String address, BigInt amount, String memo});
+}
+
+/// @nodoc
+class __$$PaymentURIImplCopyWithImpl<$Res>
+    extends _$PaymentURICopyWithImpl<$Res, _$PaymentURIImpl>
+    implements _$$PaymentURIImplCopyWith<$Res> {
+  __$$PaymentURIImplCopyWithImpl(
+      _$PaymentURIImpl _value, $Res Function(_$PaymentURIImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? address = null,
+    Object? amount = null,
+    Object? memo = null,
+  }) {
+    return _then(_$PaymentURIImpl(
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as BigInt,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PaymentURIImpl implements _PaymentURI {
+  const _$PaymentURIImpl(
+      {required this.address, required this.amount, required this.memo});
+
+  @override
+  final String address;
+  @override
+  final BigInt amount;
+  @override
+  final String memo;
+
+  @override
+  String toString() {
+    return 'PaymentURI(address: $address, amount: $amount, memo: $memo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PaymentURIImpl &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.memo, memo) || other.memo == memo));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, address, amount, memo);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PaymentURIImplCopyWith<_$PaymentURIImpl> get copyWith =>
+      __$$PaymentURIImplCopyWithImpl<_$PaymentURIImpl>(this, _$identity);
+}
+
+abstract class _PaymentURI implements PaymentURI {
+  const factory _PaymentURI(
+      {required final String address,
+      required final BigInt amount,
+      required final String memo}) = _$PaymentURIImpl;
+
+  @override
+  String get address;
+  @override
+  BigInt get amount;
+  @override
+  String get memo;
+  @override
+  @JsonKey(ignore: true)
+  _$$PaymentURIImplCopyWith<_$PaymentURIImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$PoolBalance {
   BigInt get transparent => throw _privateConstructorUsedError;
   BigInt get sapling => throw _privateConstructorUsedError;
@@ -1152,6 +1591,407 @@ abstract class _Quote implements Quote {
 }
 
 /// @nodoc
+mixin _$Recipient {
+  String get address => throw _privateConstructorUsedError;
+  int get pools => throw _privateConstructorUsedError;
+  BigInt get amount => throw _privateConstructorUsedError;
+  ParsedMemo get message => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RecipientCopyWith<Recipient> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RecipientCopyWith<$Res> {
+  factory $RecipientCopyWith(Recipient value, $Res Function(Recipient) then) =
+      _$RecipientCopyWithImpl<$Res, Recipient>;
+  @useResult
+  $Res call({String address, int pools, BigInt amount, ParsedMemo message});
+
+  $ParsedMemoCopyWith<$Res> get message;
+}
+
+/// @nodoc
+class _$RecipientCopyWithImpl<$Res, $Val extends Recipient>
+    implements $RecipientCopyWith<$Res> {
+  _$RecipientCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? address = null,
+    Object? pools = null,
+    Object? amount = null,
+    Object? message = null,
+  }) {
+    return _then(_value.copyWith(
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      pools: null == pools
+          ? _value.pools
+          : pools // ignore: cast_nullable_to_non_nullable
+              as int,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as BigInt,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ParsedMemo,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ParsedMemoCopyWith<$Res> get message {
+    return $ParsedMemoCopyWith<$Res>(_value.message, (value) {
+      return _then(_value.copyWith(message: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$RecipientImplCopyWith<$Res>
+    implements $RecipientCopyWith<$Res> {
+  factory _$$RecipientImplCopyWith(
+          _$RecipientImpl value, $Res Function(_$RecipientImpl) then) =
+      __$$RecipientImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String address, int pools, BigInt amount, ParsedMemo message});
+
+  @override
+  $ParsedMemoCopyWith<$Res> get message;
+}
+
+/// @nodoc
+class __$$RecipientImplCopyWithImpl<$Res>
+    extends _$RecipientCopyWithImpl<$Res, _$RecipientImpl>
+    implements _$$RecipientImplCopyWith<$Res> {
+  __$$RecipientImplCopyWithImpl(
+      _$RecipientImpl _value, $Res Function(_$RecipientImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? address = null,
+    Object? pools = null,
+    Object? amount = null,
+    Object? message = null,
+  }) {
+    return _then(_$RecipientImpl(
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      pools: null == pools
+          ? _value.pools
+          : pools // ignore: cast_nullable_to_non_nullable
+              as int,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as BigInt,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ParsedMemo,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RecipientImpl implements _Recipient {
+  const _$RecipientImpl(
+      {required this.address,
+      required this.pools,
+      required this.amount,
+      required this.message});
+
+  @override
+  final String address;
+  @override
+  final int pools;
+  @override
+  final BigInt amount;
+  @override
+  final ParsedMemo message;
+
+  @override
+  String toString() {
+    return 'Recipient(address: $address, pools: $pools, amount: $amount, message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RecipientImpl &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.pools, pools) || other.pools == pools) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, address, pools, amount, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RecipientImplCopyWith<_$RecipientImpl> get copyWith =>
+      __$$RecipientImplCopyWithImpl<_$RecipientImpl>(this, _$identity);
+}
+
+abstract class _Recipient implements Recipient {
+  const factory _Recipient(
+      {required final String address,
+      required final int pools,
+      required final BigInt amount,
+      required final ParsedMemo message}) = _$RecipientImpl;
+
+  @override
+  String get address;
+  @override
+  int get pools;
+  @override
+  BigInt get amount;
+  @override
+  ParsedMemo get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$RecipientImplCopyWith<_$RecipientImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SendContext {
+  String get address => throw _privateConstructorUsedError;
+  int get pools => throw _privateConstructorUsedError;
+  BigInt get amount => throw _privateConstructorUsedError;
+  bool get receiverFee => throw _privateConstructorUsedError;
+  ParsedMemo get memo => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SendContextCopyWith<SendContext> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SendContextCopyWith<$Res> {
+  factory $SendContextCopyWith(
+          SendContext value, $Res Function(SendContext) then) =
+      _$SendContextCopyWithImpl<$Res, SendContext>;
+  @useResult
+  $Res call(
+      {String address,
+      int pools,
+      BigInt amount,
+      bool receiverFee,
+      ParsedMemo memo});
+
+  $ParsedMemoCopyWith<$Res> get memo;
+}
+
+/// @nodoc
+class _$SendContextCopyWithImpl<$Res, $Val extends SendContext>
+    implements $SendContextCopyWith<$Res> {
+  _$SendContextCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? address = null,
+    Object? pools = null,
+    Object? amount = null,
+    Object? receiverFee = null,
+    Object? memo = null,
+  }) {
+    return _then(_value.copyWith(
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      pools: null == pools
+          ? _value.pools
+          : pools // ignore: cast_nullable_to_non_nullable
+              as int,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as BigInt,
+      receiverFee: null == receiverFee
+          ? _value.receiverFee
+          : receiverFee // ignore: cast_nullable_to_non_nullable
+              as bool,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as ParsedMemo,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ParsedMemoCopyWith<$Res> get memo {
+    return $ParsedMemoCopyWith<$Res>(_value.memo, (value) {
+      return _then(_value.copyWith(memo: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$SendContextImplCopyWith<$Res>
+    implements $SendContextCopyWith<$Res> {
+  factory _$$SendContextImplCopyWith(
+          _$SendContextImpl value, $Res Function(_$SendContextImpl) then) =
+      __$$SendContextImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String address,
+      int pools,
+      BigInt amount,
+      bool receiverFee,
+      ParsedMemo memo});
+
+  @override
+  $ParsedMemoCopyWith<$Res> get memo;
+}
+
+/// @nodoc
+class __$$SendContextImplCopyWithImpl<$Res>
+    extends _$SendContextCopyWithImpl<$Res, _$SendContextImpl>
+    implements _$$SendContextImplCopyWith<$Res> {
+  __$$SendContextImplCopyWithImpl(
+      _$SendContextImpl _value, $Res Function(_$SendContextImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? address = null,
+    Object? pools = null,
+    Object? amount = null,
+    Object? receiverFee = null,
+    Object? memo = null,
+  }) {
+    return _then(_$SendContextImpl(
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      pools: null == pools
+          ? _value.pools
+          : pools // ignore: cast_nullable_to_non_nullable
+              as int,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as BigInt,
+      receiverFee: null == receiverFee
+          ? _value.receiverFee
+          : receiverFee // ignore: cast_nullable_to_non_nullable
+              as bool,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as ParsedMemo,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SendContextImpl implements _SendContext {
+  const _$SendContextImpl(
+      {required this.address,
+      required this.pools,
+      required this.amount,
+      required this.receiverFee,
+      required this.memo});
+
+  @override
+  final String address;
+  @override
+  final int pools;
+  @override
+  final BigInt amount;
+  @override
+  final bool receiverFee;
+  @override
+  final ParsedMemo memo;
+
+  @override
+  String toString() {
+    return 'SendContext(address: $address, pools: $pools, amount: $amount, receiverFee: $receiverFee, memo: $memo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SendContextImpl &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.pools, pools) || other.pools == pools) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.receiverFee, receiverFee) ||
+                other.receiverFee == receiverFee) &&
+            (identical(other.memo, memo) || other.memo == memo));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, address, pools, amount, receiverFee, memo);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SendContextImplCopyWith<_$SendContextImpl> get copyWith =>
+      __$$SendContextImplCopyWithImpl<_$SendContextImpl>(this, _$identity);
+}
+
+abstract class _SendContext implements SendContext {
+  const factory _SendContext(
+      {required final String address,
+      required final int pools,
+      required final BigInt amount,
+      required final bool receiverFee,
+      required final ParsedMemo memo}) = _$SendContextImpl;
+
+  @override
+  String get address;
+  @override
+  int get pools;
+  @override
+  BigInt get amount;
+  @override
+  bool get receiverFee;
+  @override
+  ParsedMemo get memo;
+  @override
+  @JsonKey(ignore: true)
+  _$$SendContextImplCopyWith<_$SendContextImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ShieldedNote {
   int get id => throw _privateConstructorUsedError;
   int get height => throw _privateConstructorUsedError;
@@ -1527,6 +2367,142 @@ abstract class _Spending implements Spending {
   @override
   @JsonKey(ignore: true)
   _$$SpendingImplCopyWith<_$SpendingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SwapAmount {
+  String get amount => throw _privateConstructorUsedError;
+  String get currency => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SwapAmountCopyWith<SwapAmount> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SwapAmountCopyWith<$Res> {
+  factory $SwapAmountCopyWith(
+          SwapAmount value, $Res Function(SwapAmount) then) =
+      _$SwapAmountCopyWithImpl<$Res, SwapAmount>;
+  @useResult
+  $Res call({String amount, String currency});
+}
+
+/// @nodoc
+class _$SwapAmountCopyWithImpl<$Res, $Val extends SwapAmount>
+    implements $SwapAmountCopyWith<$Res> {
+  _$SwapAmountCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? amount = null,
+    Object? currency = null,
+  }) {
+    return _then(_value.copyWith(
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as String,
+      currency: null == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SwapAmountImplCopyWith<$Res>
+    implements $SwapAmountCopyWith<$Res> {
+  factory _$$SwapAmountImplCopyWith(
+          _$SwapAmountImpl value, $Res Function(_$SwapAmountImpl) then) =
+      __$$SwapAmountImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String amount, String currency});
+}
+
+/// @nodoc
+class __$$SwapAmountImplCopyWithImpl<$Res>
+    extends _$SwapAmountCopyWithImpl<$Res, _$SwapAmountImpl>
+    implements _$$SwapAmountImplCopyWith<$Res> {
+  __$$SwapAmountImplCopyWithImpl(
+      _$SwapAmountImpl _value, $Res Function(_$SwapAmountImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? amount = null,
+    Object? currency = null,
+  }) {
+    return _then(_$SwapAmountImpl(
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as String,
+      currency: null == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SwapAmountImpl implements _SwapAmount {
+  const _$SwapAmountImpl({required this.amount, required this.currency});
+
+  @override
+  final String amount;
+  @override
+  final String currency;
+
+  @override
+  String toString() {
+    return 'SwapAmount(amount: $amount, currency: $currency)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SwapAmountImpl &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, amount, currency);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SwapAmountImplCopyWith<_$SwapAmountImpl> get copyWith =>
+      __$$SwapAmountImplCopyWithImpl<_$SwapAmountImpl>(this, _$identity);
+}
+
+abstract class _SwapAmount implements SwapAmount {
+  const factory _SwapAmount(
+      {required final String amount,
+      required final String currency}) = _$SwapAmountImpl;
+
+  @override
+  String get amount;
+  @override
+  String get currency;
+  @override
+  @JsonKey(ignore: true)
+  _$$SwapAmountImplCopyWith<_$SwapAmountImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

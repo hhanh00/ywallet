@@ -89,3 +89,8 @@ pub fn get_property(coin: u8, name: &str) -> Option<String> {
 
 #[frb(sync)]
 pub fn update_lwd(coin: u8, url: &str) {}
+
+#[frb(sync)]
+pub fn split_data(id: u32, data: &[u8]) -> Vec<String> {
+    vec![]
+}

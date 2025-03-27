@@ -9,6 +9,14 @@ import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'types.freezed.dart';
 
 @freezed
+class Amount with _$Amount {
+  const factory Amount({
+    required BigInt value,
+    required bool deductFee,
+  }) = _Amount;
+}
+
+@freezed
 class Backup with _$Backup {
   const factory Backup({
     required String name,
@@ -47,52 +55,22 @@ class Fee with _$Fee {
   }) = _Fee;
 }
 
-class ParsedMemo {
-  final bool reply;
-  final String subject;
-  final String memo;
-
-  const ParsedMemo({
-    required this.reply,
-    required this.subject,
-    required this.memo,
-  });
-
-  @override
-  int get hashCode => reply.hashCode ^ subject.hashCode ^ memo.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ParsedMemo &&
-          runtimeType == other.runtimeType &&
-          reply == other.reply &&
-          subject == other.subject &&
-          memo == other.memo;
+@freezed
+class ParsedMemo with _$ParsedMemo {
+  const factory ParsedMemo({
+    required bool reply,
+    required String subject,
+    required String memo,
+  }) = _ParsedMemo;
 }
 
-class PaymentURI {
-  final String address;
-  final BigInt amount;
-  final String memo;
-
-  const PaymentURI({
-    required this.address,
-    required this.amount,
-    required this.memo,
-  });
-
-  @override
-  int get hashCode => address.hashCode ^ amount.hashCode ^ memo.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PaymentURI &&
-          runtimeType == other.runtimeType &&
-          address == other.address &&
-          amount == other.amount &&
-          memo == other.memo;
+@freezed
+class PaymentURI with _$PaymentURI {
+  const factory PaymentURI({
+    required String address,
+    required BigInt amount,
+    required String memo,
+  }) = _PaymentURI;
 }
 
 @freezed
@@ -122,39 +100,25 @@ class Quote with _$Quote {
   }) = _Quote;
 }
 
-class SendContext {
-  final String address;
-  final int pools;
-  final BigInt amount;
-  final bool receiverFee;
-  final ParsedMemo memo;
+@freezed
+class Recipient with _$Recipient {
+  const factory Recipient({
+    required String address,
+    required int pools,
+    required BigInt amount,
+    required ParsedMemo message,
+  }) = _Recipient;
+}
 
-  const SendContext({
-    required this.address,
-    required this.pools,
-    required this.amount,
-    required this.receiverFee,
-    required this.memo,
-  });
-
-  @override
-  int get hashCode =>
-      address.hashCode ^
-      pools.hashCode ^
-      amount.hashCode ^
-      receiverFee.hashCode ^
-      memo.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is SendContext &&
-          runtimeType == other.runtimeType &&
-          address == other.address &&
-          pools == other.pools &&
-          amount == other.amount &&
-          receiverFee == other.receiverFee &&
-          memo == other.memo;
+@freezed
+class SendContext with _$SendContext {
+  const factory SendContext({
+    required String address,
+    required int pools,
+    required BigInt amount,
+    required bool receiverFee,
+    required ParsedMemo memo,
+  }) = _SendContext;
 }
 
 @freezed
@@ -176,6 +140,14 @@ class Spending with _$Spending {
     required String recipient,
     required PlatformInt64 amount,
   }) = _Spending;
+}
+
+@freezed
+class SwapAmount with _$SwapAmount {
+  const factory SwapAmount({
+    required String amount,
+    required String currency,
+  }) = _SwapAmount;
 }
 
 @freezed
